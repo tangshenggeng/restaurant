@@ -63,7 +63,7 @@
     ---------------
     LobiPanel Function
     ---------------*/
-    $(function () {
+    /*$(function () {
         $('.lobipanel-basic').lobiPanel({
             sortable: true,
             reload: {
@@ -88,7 +88,7 @@
                 icon2: 'fa fa-compress'
             }
         });
-    });
+    });*/
 
 
 

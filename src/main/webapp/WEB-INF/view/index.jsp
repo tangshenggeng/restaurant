@@ -18,371 +18,17 @@
     <link href="${APP_PATH}/static/assets/css/lib/nixon.css" rel="stylesheet">
     <link href="${APP_PATH}/static/assets/lib/lobipanel/css/lobipanel.min.css" rel="stylesheet">
     <link href="${APP_PATH}/static/assets/css/style.css" rel="stylesheet">
+    <link href="${APP_PATH}/static/layui/css/layui.css" rel="stylesheet">
+    <script src="${APP_PATH}/static/vue/vue.min.js"></script>
+    <script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
 </head>
 
 <body>
-    <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
-        <div class="nano">
-            <div class="nano-content">
-                <ul>
-                    <li class="active">
-                        <a class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                        <ul>
-                            <li><a href="index.html">Dashboard 1</a></li>
-                             
-                        </ul>
-                    </li>
-                      
-                      
-                    <li><a href="app-profile.html"><i class="ti-user"></i> Profile</a></li>
-                    <li><a href="app-widget-card.html"><i class="ti-layout-grid2-alt"></i> Widget</a></li>
-                    <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-layout"></i> UI Elements <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                        <ul>
-                            <li><a href="ui-accordion.html">Accordion</a></li>
-                            <li><a href="ui-alerts.html">Alerts</a></li>
-                            <li><a href="ui-badges.html">Badges</a></li>
-                            <li><a href="ui-button.html">Button</a></li>
-                            <li><a href="ui-dropdown.html">Dropdown</a></li>
-                            <li><a href="ui-Images.html">Images</a></li> 
-                             
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-panel"></i> Components <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                        <ul>
-                            <li><a href="uc-calendar.html">Calendar</a></li>
-                            <li><a href="uc-carousel.html">Carousel</a></li>
-                              
-                            <li><a href="uc-datamap.html">Datamap</a></li>
-                            <li><a href="uc-todo-list.html">To do</a></li>
-                            <li><a href="uc-scrollable.html">Scrollable</a></li>
-                            <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
-                            <li><a href="uc-toastr.html">Toastr</a></li>
-                            <li><a href="uc-range-slider-basic.html">Basic Range Slider</a></li>
-                            <li><a href="uc-range-slider-advance.html">Advance Range Slider</a></li>
-                            <li><a href="uc-nestable.html">Nestable</a></li>
-                            <li><a href="uc-portlets.html">Portlets</a></li>
-                              
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i>  Charts  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                        <ul>
-                            <li><a href="chart-flot.html">Flot</a></li>
-                              
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-layout-grid4-alt"></i> Table <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                        <ul>
-                            <li><a href="table-basic.html">Basic</a></li> 
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-heart"></i> Icons <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                        <ul>
-                            <li><a href="font-themify.html">Themify</a></li>
-                        </ul>
-                    </li>
-                    <li> 
-                    </li>
-                    <li><a href="form-basic.html"><i class="ti-view-list-alt"></i> Basic Form </a></li>
-                    <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-files"></i> Invoice <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                        <ul>
-                            <li><a href="invoice.html">Basic</a></li>
-                            <li><a href="invoice-editable.html">Editable</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-target"></i> Pages <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                        <ul>
-                            <li><a href="page-login.html">Login</a></li>
-                            <li><a href="page-register.html">Register</a></li>
-                            <li><a href="page-reset-password.html">Forgot password</a></li>
-                        </ul>
-                    </li>
-                    <li><a target="_blank" href="#"><i class="ti-file"></i> Documentation</a></li>
-                    <li><a><i class="ti-close"></i> Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <!-- 左侧导航 -->
+    <%@ include file="/WEB-INF/view/common/leftNav.jsp" %>
     <!-- /# sidebar -->
-    <div class="header">
-        <div class="pull-left">
-            <div class="logo">
-                <a href="index.html">
-                    <img id="logoImg" src="logo/logo.png" data-logo_big="logo/logo.png" data-logo_small="logo/logoSmall.png" alt="Nixon" />
-                </a>
-            </div>
-            <div class="hamburger sidebar-toggle">
-                <span class="ti-menu"></span>
-            </div>
-        </div>
-        <div class="pull-right p-r-15">
-            <ul>
-                <li class="header-icon dib">
-                    <i class="ti-bell"></i>
-                    <div class="note-count">2</div>
-                    <div class="drop-down">
-                        <div class="dropdown-content-heading">
-                            <span class="text-left">Recent Notifications</span>
-                        </div>
-                        <div class="dropdown-content-body">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Mr. Jane</div>
-                                            <div class="notification-text">5 members joined today </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Mariam</div>
-                                            <div class="notification-text">likes a photo of you</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Tasnim</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Jane Roe</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="text-center">
-                                    <a href="#" class="more-link">See All</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >建站模板</a></div>
-                <li class="header-icon dib">
-                    <i class="ti-email"></i>
-                    <div class="note-count">21</div>
-                    <div class="drop-down">
-                        <div class="dropdown-content-heading">
-                            <span class="text-left">2 New Messages</span>
-                            <a href="app-email.html"><i class="ti-pencil-alt pull-right"></i></a>
-                        </div>
-                        <div class="dropdown-content-body">
-                            <ul>
-                                <li class="notification-unread">
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/1.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Jane Doe</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-unread">
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/2.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Jane Roe</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Jane Doe</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/2.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Jane Roe</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="text-center">
-                                    <a href="#" class="more-link">See All</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="header-icon dib chat-sidebar-icon"><i class="ti-comments"></i></li>
-                <li class="header-icon dib">
-                    <img class="avatar-img" src="assets/images/avatar/1.jpg" alt="" /> <span class="user-avatar">Jane <i class="ti-angle-down f-s-10"></i></span>
-                    <div class="drop-down dropdown-profile">
-                        <div class="dropdown-content-heading">
-                            <span class="text-left">Upgrade Now</span>
-                            <p class="trial-day">30 Days Trail</p>
-                        </div>
-                        <div class="dropdown-content-body">
-                            <ul>
-                                <li><a href="#"><i class="ti-user"></i> <span>Profile</span></a></li>
-                                <li><a href="#"><i class="ti-wallet"></i> <span>My Balance</span></a></li>
-                                <li><a href="#"><i class="ti-write"></i> <span>My Task</span></a></li>
-                                <li><a href="#"><i class="ti-calendar"></i> <span>My Calender</span></a></li>
-                                <li><a href="#"><i class="ti-email"></i> <span>Inbox</span></a></li>
-                                <li><a href="#"><i class="ti-settings"></i> <span>Setting</span></a></li>
-                                <li><a href="#"><i class="ti-help-alt"></i> <span>Help</span></a></li>
-                                <li><a href="#"><i class="ti-lock"></i> <span>Lock Screen</span></a></li>
-                                <li><a href="#"><i class="ti-power-off"></i> <span>Logout</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="chat-sidebar">
-        <!-- BEGIN chat -->
-        <div id="mmc-chat" class="color-default">
-            <!-- BEGIN CHAT BOX -->
-            <div class="chat-box">
-                <!-- BEGIN CHAT BOXS -->
-                <ul class="boxs"></ul>
-                <!-- END CHAT BOXS -->
-                <div class="icons-set">
-                    <div class="stickers">
-                        <div class="had-container">
-                            <div class="row">
-                                <div class="s12">
-                                    <ul class="tabs" style="width: 100%;height: 60px;">
-                                        <li class="tab col s3">
-                                            <a href="#tab1" class="active">
-                                                <img src="assets/images/1.png" alt="" />
-                                            </a>
-                                        </li>
-                                        <li class="tab col s3"><a href="#tab2">Test 2</a></li>
-                                    </ul>
-                                </div>
-                                <div id="tab1" class="s12 tab-content">
-                                    <ul>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                        <li><img src="assets/images/1.png" alt="" /></li>
-                                    </ul>
-                                </div>
-                                <div id="tab2" class="s12 tab-content">Test 2</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END CHAT BOX -->
-            <!-- BEGIN SIDEBAR -->
-            <div id="sidebar" class="right scroll">
-                <div class="had-container">
-                    <!-- BEGIN USERS -->
-                    <div class="users">
-                        <ul class="user-list">
-                            <!-- BEGIN USER-->
-                            <li class="user-tooltip" data-id="1" data-status="online" data-username="Rufat Askerov" data-position="left" data-filter-item data-filter-name="rufat askerov">
-                                <!-- BEGIN USER IMAGE-->
-                                <div class="user-image">
-                                    <img src="assets/images/avatar/1.jpg" class="avatar" alt="Rufat Askerov" />
-                                </div>
-                                <!-- END USER IMAGE-->
-                                <!-- BEGIN USERNAME-->
-                                <span class="user-name">Rufat Askerov</span>
-                                <span class="user-show"></span>
-                                <!-- END USERNAME-->
-                            </li>
-                            <!-- END USER-->
-                            <!-- BEGIN USER-->
-                            <li class="user-tooltip" data-id="3" data-status="online" data-username="Alice" data-position="left" data-filter-item data-filter-name="alice">
-                                <div class="user-image">
-                                    <img src="assets/images/avatar/1.jpg" class="avatar" alt="Alice" />
-                                </div>
-                                <span class="user-name">Alice</span>
-                                <span class="user-show"></span>
-                            </li>
-                            <!-- BEGIN USER-->
-                            <li class="user-tooltip" data-id="7" data-status="offline" data-username="Michael Scofield" data-position="left" data-filter-item data-filter-name="michael scofield">
-                                <div class="user-image">
-                                    <img src="assets/images/avatar/1.jpg" class="avatar" alt="Michael Scofield" />
-                                </div>
-                                <span class="user-name">Michael Scofield</span>
-                                <span class="user-show"></span>
-                            </li>
-                            <!-- BEGIN USER-->
-                            <li class="user-tooltip" data-id="5" data-status="online" data-username="Irina Shayk" data-position="left" data-filter-item data-filter-name="irina shayk">
-                                <div class="user-image">
-                                    <img src="assets/images/avatar/1.jpg" class="avatar" alt="Irina Shayk" />
-                                </div>
-                                <span class="user-name">Irina Shayk</span>
-                                <span class="user-show"></span>
-                            </li>
-                            <!-- BEGIN USER-->
-                            <li class="user-tooltip" data-id="6" data-status="offline" data-username="Sara Tancredi" data-position="left" data-filter-item data-filter-name="sara tancredi">
-                                <div class="user-image">
-                                    <img src="assets/images/avatar/1.jpg" class="avatar" alt="Sara Tancredi" />
-                                </div>
-                                <span class="user-name">Sara Tancredi</span>
-                                <span class="user-show"></span>
-                            </li>
-                            <!-- BEGIN USER-->
-                            <li class="user-tooltip" data-id="7" data-status="offline" data-username="Jane" data-position="left" data-filter-item data-filter-name="Jane">
-                                <div class="user-image">
-                                    <img src="assets/images/avatar/1.jpg" class="avatar" alt="Jane" />
-                                </div>
-                                <span class="user-name">Jane</span>
-                                <span class="user-show"></span>
-                            </li>
-                        </ul>
-                        <div class="chat-user-search">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="ti-search"></i></span>
-                                <input type="text" class="form-control" placeholder="Search" data-search />
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END USERS -->
-                </div>
-            </div>
-            <!-- END SIDEBAR -->
-        </div>
-        <!-- END chat -->
-    </div>
+    <%@ include file="/WEB-INF/view/common/header.jsp" %>
+    
     <!-- END chat Sidebar-->
     <div class="content-wrap">
         <div class="main">
@@ -391,7 +37,7 @@
                     <div class="col-lg-8 p-0">
                         <div class="page-header">
                             <div class="page-title">
-                                <h1>Dashboard</h1>
+                                <h1>导航</h1>
                             </div>
                         </div>
                     </div>
@@ -400,8 +46,8 @@
                         <div class="page-header">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="#">Dashboard</a></li>
-                                    <li class="active">Home</li>
+                                    <li><a href="#">导航</a></li>
+                                    <li class="active">主页</li>
                                 </ol>
                             </div>
                         </div>
@@ -480,304 +126,31 @@
                         </div>
                         <!-- /# column -->
                     </div>
-                    <!-- /# row -->
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card alert">
+                    	<div class="col-lg-12">
+                            <div class="card">
                                 <div class="card-header">
-                                    <h4>Yearly Sales </h4>
-                                    <div class="card-header-right-icon">
-                                        <ul>
-                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
-                                            <li class="card-collapse"><i class="fa fa-window-restore"></i></li>
-                                        </ul>
-                                    </div>
+                                    <h4>反馈信息</h4>
+									<div class="card-header-right-icon">
+										<ul>
+											<li class="card-close" id="lookTBIcon"><i class="ti-email"></i></li>
+											<li class="card-option" id="reloadTBIcon"><i class="ti-loop" aria-haspopup="true" aria-expanded="true" role="link"></i>
+											</li>
+											 
+										</ul>
+									</div>
                                 </div>
-                                <div class="sales-chart  card-content">
-                                    <canvas id="sales-chart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /# column -->
-                        <div class="col-lg-6">
-                            <div class="card alert">
-                                <div class="card-header">
-                                    <h4>Team Total Completed </h4>
-                                    <div class="card-header-right-icon">
-                                        <ul>
-                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
-                                            <li class="card-collapse"><i class="fa fa-window-restore"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="sales-chart card-content">
-                                    <canvas id="team-chart"></canvas>
-                                </div>
-                            </div>
-                        </div> 
-                        <!-- /# column -->
-                    </div>
-                    <!-- /# row -->
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card alert">
-                                <div class="card-header">
-                                    <h4>Sales Store</h4>
-                                    <div class="card-header-right-icon">
-                                        <ul>
-                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
-                                            <li class="card-collapse"><i class="fa fa-window-restore"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="datamap card-content">
-                                    <div id="world-datamap"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /# column -->
-                        <div class="col-lg-6">
-                            <div class="card alert">
-                                <div class="card-header">
-                                    <h4>Recent Sales </h4>
-                                    <div class="card-header-right-icon">
-                                        <ul>
-                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
-                                            <li class="card-option drop-menu">
-                                                <i class="ti-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="link"></i>
-                                                <ul class="card-option-dropdown dropdown-menu">
-                                                    <li><a href="#"><i class="ti-loop"></i> Update data</a></li>
-                                                    <li><a href="#"><i class="ti-menu-alt"></i> Detail log</a></li>
-                                                    <li><a href="#"><i class="ti-pulse"></i> Statistics</a></li>
-                                                    <li><a href="#"><i class="ti-power-off"></i> Clear ist</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="card-collapse"><i class="fa fa-window-restore"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-body  card-content">
-                                    <table class="table table-responsive table-hover ">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Status</th>
-                                                <th>Date</th>
-                                                <th>Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Kolor Tea Shirt For Man</td>
-                                                <td><span class="badge badge-primary">Sale</span></td>
-                                                <td>January 22</td>
-                                                <td class="color-primary">$21.56</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Kolor Tea Shirt For Women</td>
-                                                <td><span class="badge badge-success">Tax</span></td>
-                                                <td>January 30</td>
-                                                <td class="color-success">$55.32</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blue Backpack For Baby</td>
-                                                <td><span class="badge badge-danger">Extended</span></td>
-                                                <td>January 25</td>
-                                                <td class="color-danger">$14.85</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Kolor Tea Shirt For Man</td>
-                                                <td><span class="badge badge-primary">Sale</span></td>
-                                                <td>January 22</td>
-                                                <td class="color-primary">$21.56</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Kolor Tea Shirt For Women</td>
-                                                <td><span class="badge badge-success">Tax</span></td>
-                                                <td>January 30</td>
-                                                <td class="color-success">$55.32</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Blue Backpack For Baby</td>
-                                                <td><span class="badge badge-danger">Extended</span></td>
-                                                <td>January 25</td>
-                                                <td class="color-danger">$14.85</td>
-                                            </tr>
-                                        </tbody>
+                                <div class="card-body">
+                                    <table id="feedBackTb" class="table table-responsive table-hover" lay-filter="feedBackTBFilter">
+                                        
                                     </table>
                                 </div>
-                            </div>
+							</div>
                         </div>
-                        <!-- /# column -->
                     </div>
+                    
+                    
                     <!-- /# row -->
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div id="lobipanel-custom-control" class="card alert panel panel-default">
-                                <div class="card-header">
-                                    <h4>Browser Statistics </h4>
-                                    <div class="card-header-right-icon">
-                                        <ul>
-                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-body panel-body">
-                                    <table class="table table-responsive table-hover ">
-                                        <tbody>
-                                            <tr>
-                                                <td class="no-border">Google Chrome</td>
-                                                <td class="no-border"><span class="badge badge-primary">45%</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mozila Firefox</td>
-                                                <td><span class="badge badge-success">65%</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Safari</td>
-                                                <td><span class="badge badge-danger">10%</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Opera Mini</td>
-                                                <td><span class="badge badge-primary">29%</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Microsoft Edge</td>
-                                                <td><span class="badge badge-success">95%</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Internet Explorer</td>
-                                                <td><span class="badge badge-danger">25%</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /# column -->
-                        <div class="col-lg-4">
-                            <div class="card alert">
-                                <div class="card-header">
-                                    <h4>Todo List</h4>
-                                    <div class="card-header-right-icon">
-                                        <ul>
-                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="todo-list">
-                                    <div class="tdl-holder">
-                                        <div class="tdl-content">
-                                            <ul>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox"><i></i><span>get up</span>
-                                                        <a href='#' class="ti-close"></a>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" checked><i></i><span>stand up</span>
-                                                        <a href='#' class="ti-close"></a>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox"><i></i><span>don't give up the fight.</span>
-                                                        <a href='#' class="ti-close"></a>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" checked><i></i><span>do something else</span>
-                                                        <a href='#' class="ti-close"></a>
-                                                    </label>
-                                                </li>
-                                                <li>
-                                                    <label>
-                                                        <input type="checkbox" checked><i></i><span>stand up</span>
-                                                        <a href='#' class="ti-close"></a>
-                                                    </label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <input type="text" class="tdl-new form-control" placeholder="Write new item and hit 'Enter'...">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /# column -->
-                        <div class="col-lg-4">
-                            <div class="card alert">
-                                <div class="card-header">
-                                    <h4>Recent Comments </h4>
-                                    <div class="card-header-right-icon">
-                                        <ul>
-                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="recent-comment m-t-15">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img class="media-object" src="assets/images/avatar/1.jpg" alt="..."></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">John Doe</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. </p>
-                                            <div class="comment-action">
-                                                <div class="badge badge-success">Approved</div>
-                                                <span class="m-l-10">
-                                                 <a href="#"><i class="ti-check color-success"></i></a>
-                                                 <a href="#"><i class="ti-close color-danger"></i></a>
-                                                 <a href="#"><i class="fa fa-reply color-primary"></i></a>
-                                             </span>
-                                         </div>
-                                         <p class="comment-date">May 20, 2018</p>
-                                     </div>
-                                 </div>
-                                 <div class="media">
-                                    <div class="media-left">
-                                        <a href="#"><img class="media-object" src="assets/images/avatar/2.jpg" alt="..."></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Jane Roe</h4>
-                                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. </p>
-                                        <div class="comment-action">
-                                            <div class="badge badge-warning">Pending</div>
-                                            <span class="m-l-10">
-                                             <a href="#"><i class="ti-check color-success"></i></a>
-                                             <a href="#"><i class="ti-close color-danger"></i></a>
-                                             <a href="#"><i class="fa fa-reply color-primary"></i></a>
-                                         </span>
-                                     </div>
-                                     <p class="comment-date">May 20, 2018</p>
-                                 </div>
-                             </div>
-                             <div class="media no-border">
-                                <div class="media-left">
-                                    <a href="#"><img class="media-object" src="assets/images/avatar/3.jpg" alt="..."></a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Mr. Jane</h4>
-                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. </p>
-                                    <div class="comment-action">
-                                        <div class="badge badge-danger">Rejected</div>
-                                        <span class="m-l-10">
-                                         <a href="#"><i class="ti-check color-success"></i></a>
-                                         <a href="#"><i class="ti-close color-danger"></i></a>
-                                         <a href="#"><i class="fa fa-reply color-primary"></i></a>
-                                     </span>
-                                 </div>
-                                 <div class="comment-date">May 20, 2018</div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-                 <!-- /# card -->
-             </div>
-             <!-- /# column -->
-         </div>
          <!-- /# row -->     </div>
  </div>
  <!-- /# container-fluid -->
@@ -785,6 +158,38 @@
 <!-- /# main -->
 </div>
 <!-- /# content wrap -->
+<!-- 查看模态框 -->
+<div style="display: none;" id="detailFeedBlackModal">
+		<div class="layui-card">
+			<div class="layui-card-body" id="feedText">
+			</div>
+		</div>
+</div>
+<div style="display: none;" id="editFeedBlackModal">
+		<div class="layui-card">
+			<div class="layui-card-body">
+				<form id="editFeedBackForm">
+					<input type="hidden" name="feedbackId" id="feedBackIdModal" />
+					<div class="form-group" id="sortIdSele">
+	                    <label>反馈分类</label>
+	                    <select name="feedbackSortId" id="sortModalSel" class="form-control">
+	                        <option value="0">---请选择---</option>
+	                        <option v-for="item in sort" :value="item.feedbackSortId">{{item.sortName}}</option>
+	                    </select>
+                	</div>
+					<div class="form-group">
+	                    <label>反馈紧急性</label>
+	                    <select name="feedbackSerious" class="form-control">
+	                        <option value="0">普通</option>
+	                        <option value="1">紧急</option>
+	                    </select>
+                	</div>
+                	<button type="button" id="editFeedBackBtn" class="btn btn-default">处理</button>
+				</form>
+			</div>
+		</div>
+</div>
+
 <script src="${APP_PATH}/static/assets/js/lib/jquery.min.js"></script>
 <!-- jquery vendor -->
 <script src="${APP_PATH}/static/assets/js/lib/jquery.nanoscroller.min.js"></script>
@@ -794,28 +199,188 @@
 <script src="${APP_PATH}/static/assets/js/lib/bootstrap.min.js"></script>
 <!-- bootstrap -->
 <script src="${APP_PATH}/static/assets/js/lib/mmc-common.js"></script>
-<script src="${APP_PATH}/static/assets/js/lib/mmc-chat.js"></script>
-<!--  Chart js -->
-<script src="${APP_PATH}/static/assets/js/lib/chart-js/Chart.bundle.js"></script>
-<script src="${APP_PATH}/static/assets/js/lib/chart-js/chartjs-init.js"></script>
-<!-- // Chart js -->
-<!--  Datamap -->
-<script src="${APP_PATH}/static/assets/js/lib/datamap/d3.min.js"></script>
-<script src="${APP_PATH}/static/assets/js/lib/datamap/topojson.js"></script>
-<script src="${APP_PATH}/static/assets/js/lib/datamap/datamaps.world.min.js"></script>
-<script src="${APP_PATH}/static/assets/js/lib/datamap/datamap-init.js"></script>
-<script src="${APP_PATH}/static/assets/lib/lobipanel/js/lobipanel.js"></script>
-<!-- // Datamap -->
-<script src="assets/js/scripts.js"></script>
+<script src="${APP_PATH}/static/assets/js/scripts.js"></script>
+<script src="${APP_PATH}/static/layui/layui.all.js"></script>
+
 <!-- scripit init-->
 <script>
-    $(document).ready(function() {
-        $('#lobipanel-custom-control').lobiPanel({
-            reload: false,
-            close: false,
-            editTitle: false
-        });
-    });
+	$(function(){
+		renderTb();
+	});
+	function renderTb(){
+		layui.use('table', function(){
+			  var table = layui.table;
+			  //第一个实例
+			  table.render({
+			    elem: '#feedBackTb'
+			    ,height: 312
+			    ,url: '${APP_PATH}/feedBack/getNoSolvedFeedList' //数据接口
+			    ,page: true //开启分页
+			    ,where: {solved:-1}
+			    ,cols: [[ //表头
+			      {field: 'feedbackId', title: '#',hide:true,rowspan:2,align:"center"}
+			      ,{field: 'feedbackCustName', title: '反馈人称呼',rowspan:2,align:"center"}
+			      ,{field: 'feedbackCustEmail', title: 'Email',rowspan:2,align:"center"}
+			      ,{title: '反馈状态',colspan:2,align:"center"}
+			      ,{field: 'createTime', title: '反馈时间',rowspan:2,align:"center"}
+			      ,{fixed: 'right', title: '操作',width:150,width:200, align:'center', toolbar: '#barDemo',rowspan:2,align:"center"}
+			    ],
+			    [
+		    	   {field: 'feedbackSerious',align:"center", style:"color: orange;", title: '紧急性',templet: function(d){
+			    	  return d.feedbackSerious == false?"普通":"紧急"
+			      	}}
+			      ,{field: 'feedIsDel',align:"center", style:"color: red;",title: '是否解决',templet: function(d){
+			    	  return d.feedIsDel == true?"待解决":"已解决"
+			      	}}
+			    ]
+			    ]
+			    ,text: {
+			        none: '暂时没有需要处理的留言'
+			    }
+			    ,skin: 'line' //行边框风格
+			    ,size: 'lg'
+			  	,parseData: function(res){ //res 即为原始返回的数据
+			  		console.log(res)
+				    return {
+				      "code": res.status, //解析接口状态
+				      "msg": res.message, //解析提示文本
+				      "count": res.total, //解析数据长度
+				      "data": res.data //解析数据列表
+				    };
+				  }
+			  });
+			  table.on('tool(feedBackTBFilter)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+				  var data = obj.data; //获得当前行数据
+				  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+				  var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+				 
+				  if(layEvent === 'detail'){ //查看
+					  $("#feedText").html(data.feedbackText);
+					  var index = layer.open({
+							title : '反馈内容',
+							fix : true,
+							resize :false,
+							move: false,
+							zIndex : 500,
+							shadeClose : true,
+							shade : 0.4,
+							type : 1,
+							content : $('#detailFeedBlackModal')
+						});
+				  } else if(layEvent === 'solveFeedBack'){ //解决
+					  
+					  if(data.feedbackSortId==0){
+						  layer.msg("请先在“修改”里面选择反馈分类！",{icon: 2});
+						  return;
+					  }
+					var id=data.feedbackId;
+				    layer.confirm('确认已经解决了吗？', function(index){
+				      $.ajax({
+				    	  url:"${APP_PATH}/feedBack/solveFeedBack?id="+id,
+				    	  method:"GET",
+				    	  success:function(res){
+				    		  if(res.code==100){
+				    			  layer.msg(res.extend.msg,{icon: 1},function(){
+				    				  reloadTable();
+				    			  }); 
+				    		  }
+				    	  },error:function(){
+				    		  layer.msg("确认解决失败！系统出错！",{icon: 2});
+				    	  }
+				      });
+				      layer.close(index);
+				    });
+				  } else if(layEvent === 'edit'){ //编辑
+					  $("#feedBackIdModal").val(data.feedbackId);
+				  	  var sortId = data.feedbackSortId
+				  	  $("#sortModalSel > option").each(function(){
+				  		 var va = $(this).val()
+				  		  if(va == sortId){
+				  			$(this).attr("selected","selected") 
+				  		  }
+				  	  });	
+					  var index = layer.open({
+							title : '反馈内容',
+							fix : true,
+							resize :false,
+							move: false,
+							area:["600px","300px"],
+							zIndex : 500,
+							shadeClose : true,
+							shade : 0.4,
+							type : 1,
+							content : $('#editFeedBlackModal')
+						});
+					  
+				  } else if(layEvent === 'LAYTABLE_TIPS'){
+				    layer.alert('Hi，头部工具栏扩展的右侧图标。');
+				  }
+				});
+			});
+	}
+	var sortIdSele = new Vue({
+		el:"#sortIdSele",
+		data:{
+			sort:[]
+		},
+		created: function () {
+			this.$http.get("${APP_PATH}/feedBackSort/getAll").then(function(response){
+				//成功
+				this.sort=response.body;
+			},function(response) {
+				//错误
+				console.log("查询反馈分类时，出现系统错误！")
+			});
+		}
+	});
+	//修改反馈信息
+	$("#editFeedBackBtn").click(function(){
+		layui.use('layer', function(){
+			 var table = layui.table;
+			$.ajax({
+				url:"${APP_PATH}/feedBack/updateFeedBack",
+				method:"POST",
+				data:$("#editFeedBackForm").serialize(),
+				success:function(res){
+					if(res.code==100){
+						layer.msg(res.extend.msg,{icon: 6},function(){
+							reloadTable();
+							layer.closeAll(); //疯狂模式，关闭所有层
+						});	
+					}else{
+						layer.msg(res.extend.msg,{icon: 5});	
+					}
+				},error:function(){
+					layer.msg('修改反馈信息时，系统错误！',{icon: 5});
+				}
+			});
+		})
+	});
+	//点击表格顶部的刷新
+	$("#reloadTBIcon").click(function(){
+		reloadTable();
+	});
+	$("#lookTBIcon").click(function(){
+		layui.use('layer', function(){
+			var table = layui.layer;
+			layer.msg("待处理的反馈信息");
+		})
+	});
+	//重新渲染表格
+	function reloadTable(){
+		layui.use('table', function(){
+			 var table = layui.table;
+			 table.reload('feedBackTb', {
+				   url: '${APP_PATH}/feedBack/getNoSolvedFeedList' //数据接口
+				  ,where: {solved:-1} //设定异步数据接口的额外参数
+			});
+		})
+	}
+</script>
+<script type="text/html" id="barDemo">
+<button type="button" class="btn btn-info btn-xs btn-outline" lay-event="detail">查看</button>
+<button type="button" class="btn btn-warning btn-xs btn-outline" lay-event="edit">修改</button>
+<button type="button" class="btn btn-danger btn-xs btn-outline" lay-event="solveFeedBack">解决</button>
 </script>
 </body>
 

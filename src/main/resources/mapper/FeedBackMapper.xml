@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.tsg.feedBack.mapper.FeedBackMapper">
+
+    <!-- 开启二级缓存 -->
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="ink.tsg.feedBack.beans.FeedBack">
+        <id column="feedback_id" property="feedbackId" />
+        <result column="feedback_cust_name" property="feedbackCustName" />
+        <result column="feedback_cust_email" property="feedbackCustEmail" />
+        <result column="feedback_text" property="feedbackText" />
+        <result column="feedback_sort_id" property="feedbackSortId" />
+        <result column="feedback_serious" property="feedbackSerious" />
+        <result column="create_time" property="createTime" />
+        <result column="solve_time" property="solveTime" />
+        <result column="feed_is_del" property="feedIsDel" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        feedback_id, feedback_cust_name, feedback_cust_email, feedback_text, feedback_sort_id, feedback_serious, create_time, solve_time, feed_is_del
+    </sql>
+
+</mapper>

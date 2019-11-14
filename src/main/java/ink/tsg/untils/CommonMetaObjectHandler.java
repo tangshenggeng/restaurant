@@ -1,5 +1,8 @@
 package ink.tsg.untils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.ibatis.reflection.MetaObject;
 
 import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
@@ -25,20 +28,14 @@ public class CommonMetaObjectHandler extends MetaObjectHandler {
 		 * setFieldValByName("contactState", 1, metaObject); }
 		 */
 		// creatTime自动填充为当前时间
-		/*
-		 * Object creatTime = getFieldValByName("creatTime", metaObject); if (creatTime
-		 * == null) { Date date = new Date(); SimpleDateFormat dateFormat= new
-		 * SimpleDateFormat("yyyy-MM-dd :hh:mm:ss"); setFieldValByName("creatTime",
-		 * dateFormat.format(date), metaObject); } Object createTime =
-		 * getFieldValByName("createTime", metaObject); if (createTime == null) { Date
-		 * date = new Date(); SimpleDateFormat dateFormat= new
-		 * SimpleDateFormat("yyyy-MM-dd :hh:mm:ss"); setFieldValByName("createTime",
-		 * dateFormat.format(date), metaObject); } Object payTime =
-		 * getFieldValByName("payTime", metaObject); if (payTime == null) { Date date =
-		 * new Date(); SimpleDateFormat dateFormat= new
-		 * SimpleDateFormat("yyyy-MM-dd :hh:mm:ss"); setFieldValByName("payTime",
-		 * dateFormat.format(date), metaObject); }
-		 */
+		
+		Object createTime = getFieldValByName("createTime", metaObject);
+		if (createTime == null) {
+			Date date = new Date();
+			SimpleDateFormat sdf =   new SimpleDateFormat( " yyyy-MM-dd HH:mm:ss " );
+			String nowTime = sdf.format(date);
+			setFieldValByName("createTime", nowTime, metaObject);
+		}
 	}
 	/**
 	 * 更新时

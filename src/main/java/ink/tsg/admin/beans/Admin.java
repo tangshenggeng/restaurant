@@ -1,6 +1,7 @@
 package ink.tsg.admin.beans;
 
 import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -38,9 +39,31 @@ public class Admin extends Model<Admin> {
      * 头像图片路径
      */
     private String adminHead;
+    
+    @TableField(exist=false)
+    private String oldPwd;
+    
+    @TableField(exist=false)
+    private String newPwd;
 
+    
+    public String getOldPwd() {
+		return oldPwd;
+	}
 
-    public Integer getAdminId() {
+	public void setOldPwd(String oldPwd) {
+		this.oldPwd = oldPwd;
+	}
+
+	public String getNewPwd() {
+		return newPwd;
+	}
+
+	public void setNewPwd(String newPwd) {
+		this.newPwd = newPwd;
+	}
+
+	public Integer getAdminId() {
         return adminId;
     }
 

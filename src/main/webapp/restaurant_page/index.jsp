@@ -441,27 +441,28 @@
             <p>即使没有反馈也可以来撩哟~</p>
           </div>
           <div class="col-md-6 col-md-push-1 probootstrap-animate">
-            <form method="post" class="probootstrap-form">
+            <form  class="probootstrap-form" id="feedBackForm">
               <div class="form-group">
-                <label for="c_name">称呼</label>
+                <label for="c_name">称呼：</label>
                 <div class="form-field">
-                  <input type="text" id="c_name" class="form-control">
+                  <input type="text" name="feedbackCustName" class="form-control" placeholder="请输入您的称呼">
                 </div>
               </div>
               <div class="form-group">
-                <label for="c_email">联系方式</label>
+                <label for="c_email">联系Email：</label>
                 <div class="form-field">
-                  <input type="text" id="c_email" class="form-control">
+                  <input type="email" name="feedbackCustEmail" class="form-control" placeholder="请输入您的Email">
                 </div>
               </div>
               <div class="form-group">
-                <label for="c_message">内容</label>
+                <label for="c_message">内容：</label>
                 <div class="form-field">
-                  <textarea name="c_message" id="c_message" cols="30" rows="10" class="form-control"></textarea>
+                  <textarea name="feedbackText" cols="30" rows="10" class="form-control" placeholder="请输入您要反馈的内容"></textarea>
                 </div>
               </div>
               <div class="form-group">
-                <input type="submit" name="c_submit" id="c_submit" value="留言" class="btn btn-primary btn-lg">
+                <input type="button" id="c_submit" value="留言" class="btn btn-primary btn-lg">
+                <input type="reset" id="c_reset" value="重置" class="btn btn-primary btn-lg">
               </div>
             </form>
           </div>
@@ -516,6 +517,30 @@
 
     <script src="${APP_PATH}/restaurant_page/js/scripts.min.js"></script>
     <script src="${APP_PATH}/restaurant_page/js/custom.min.js"></script>
-
+    <script src="${APP_PATH}/static/layer/layer.js"></script>
+	<script type="text/javascript">
+			
+		//留言
+		$("#c_submit").click(function(){
+			
+			$.ajax({
+				url:"${APP_PATH}/feedBack/addFeedBack",
+				method:"post",
+				data:$("#feedBackForm").serialize(),
+				success:function(res){
+					if(res.code == 100){
+						layer.msg(res.extend.msg, {icon: 6}, function(){
+							$("#c_reset").click();
+						}); 
+					}else{
+						layer.msg(res.extend.msg, {icon: 5});
+					}
+				},error:function(){
+					layer.msg(res.extend.msg, {icon: 5});
+				}
+			});
+		});
+	
+	</script>
   </body>
 </html>

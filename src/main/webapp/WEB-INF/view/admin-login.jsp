@@ -61,7 +61,11 @@
 
 </body>
 <script type="text/javascript" src="${APP_PATH}/static/layer/layer.js"></script> 
-<script type="text/javascript">
-	
+<script language="javascript">
+      //防止页面后退
+      history.pushState(null, null, document.URL);
+      window.addEventListener('popstate', function () {
+          history.pushState(null, null, document.URL);
+      });
 </script>
 </html>
