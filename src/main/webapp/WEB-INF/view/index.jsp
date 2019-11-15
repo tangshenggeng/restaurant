@@ -216,7 +216,7 @@
 			    ,height: 312
 			    ,url: '${APP_PATH}/feedBack/getNoSolvedFeedList' //数据接口
 			    ,page: true //开启分页
-			    ,where: {solved:-1}
+			    ,where: {solved:1}
 			    ,cols: [[ //表头
 			      {field: 'feedbackId', title: '#',hide:true,rowspan:2,align:"center"}
 			      ,{field: 'feedbackCustName', title: '反馈人称呼',rowspan:2,align:"center"}
@@ -268,7 +268,7 @@
 							content : $('#detailFeedBlackModal')
 						});
 				  } else if(layEvent === 'solveFeedBack'){ //解决
-					  
+					  console.log(data.feedbackSortId)
 					  if(data.feedbackSortId==0){
 						  layer.msg("请先在“修改”里面选择反馈分类！",{icon: 2});
 						  return;
@@ -281,7 +281,7 @@
 				    	  success:function(res){
 				    		  if(res.code==100){
 				    			  layer.msg(res.extend.msg,{icon: 1},function(){
-				    				  reloadTable();
+				    				  renderTb();
 				    			  }); 
 				    		  }
 				    	  },error:function(){
@@ -344,7 +344,7 @@
 				success:function(res){
 					if(res.code==100){
 						layer.msg(res.extend.msg,{icon: 6},function(){
-							reloadTable();
+							renderTb();
 							layer.closeAll(); //疯狂模式，关闭所有层
 						});	
 					}else{
@@ -358,7 +358,7 @@
 	});
 	//点击表格顶部的刷新
 	$("#reloadTBIcon").click(function(){
-		reloadTable();
+		renderTb();
 	});
 	$("#lookTBIcon").click(function(){
 		layui.use('layer', function(){
@@ -366,16 +366,7 @@
 			layer.msg("待处理的反馈信息");
 		})
 	});
-	//重新渲染表格
-	function reloadTable(){
-		layui.use('table', function(){
-			 var table = layui.table;
-			 table.reload('feedBackTb', {
-				   url: '${APP_PATH}/feedBack/getNoSolvedFeedList' //数据接口
-				  ,where: {solved:-1} //设定异步数据接口的额外参数
-			});
-		})
-	}
+	
 </script>
 <script type="text/html" id="barDemo">
 <button type="button" class="btn btn-info btn-xs btn-outline" lay-event="detail">查看</button>

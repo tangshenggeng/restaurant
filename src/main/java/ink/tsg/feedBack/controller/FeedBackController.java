@@ -4,7 +4,6 @@ package ink.tsg.feedBack.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,9 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
 import ink.tsg.feedBack.beans.FeedBack;
+import ink.tsg.feedBack.beans.FeedBackSort;
 import ink.tsg.feedBack.service.FeedBackService;
+import ink.tsg.feedBack.service.FeedBackSortService;
 import ink.tsg.untils.Msg;
 
 /**
@@ -35,13 +36,23 @@ import ink.tsg.untils.Msg;
 public class FeedBackController {
 	
 	@Autowired
-	private FeedBackService feedBService;
+	private FeedBackService feedBService;	//留言
 	
+	@Autowired
+	private FeedBackSortService feedBSService; //留言分类
 	
 	/**
-	 * 
+	 * 删除反馈
 	 * */
-	
+	@RequestMapping(value="/delFeedBack",method=RequestMethod.GET)
+	@ResponseBody
+	public Msg delFeedBack(@RequestParam("id")Integer id) {
+		boolean b = feedBService.deleteById(id);
+		if(b) {
+			return Msg.success().add("msg", "删除成功！");
+		}
+		return Msg.fail().add("msg", "删除失败！");
+	}
 	/**
 	 * 确认解决
 	 * */
@@ -55,7 +66,7 @@ public class FeedBackController {
 		
 		FeedBack f = new FeedBack();
 		f.setFeedbackId(id);
-		f.setFeedIsDel(1);
+		f.setFeedIsDel(0);
 		f.setSolveTime(nowTime);
 		boolean b = feedBService.updateById(f);
 		if(!b) {
@@ -65,7 +76,7 @@ public class FeedBackController {
 	}
 	
 	/**
-	 * 更新反馈表
+	 * 更新反馈表（给反馈加分类）
 	 * */
 	@RequestMapping(value="/updateFeedBack",method=RequestMethod.POST)
 	@ResponseBody
@@ -87,6 +98,7 @@ public class FeedBackController {
 		
 		EntityWrapper<FeedBack> wrapper = new EntityWrapper<>();
 		wrapper.eq("feed_is_del", solved);
+		wrapper.eq("feed_is_given", 1);//未赠送优惠卷
 		Page<Map<String, Object>> feedBackPage = feedBService.selectMapsPage(new Page<FeedBack>(page, limit), wrapper);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("status",0);
@@ -102,14 +114,26 @@ public class FeedBackController {
 	@RequestMapping(value="/getAlreadySolvedFeedList",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> getAlreadySolvedFeedList(@RequestBody Map map) {
-		System.out.println(map);
-		System.out.println(map.get("serious"));
+		int page = (int) map.get("page");
+		int limit = (int) map.get("limit");
 		
+		int sortId = Integer.parseInt((String) map.get("sortId"));
+		
+		EntityWrapper<FeedBack> wrapper = new EntityWrapper<>();
+		wrapper.eq("feed_is_del", map.get("solved"));
+		if(map.get("serious")!=null) {
+			wrapper.eq("feedback_serious", map.get("serious"));
+		}
+		if(sortId != 0) {
+			wrapper.eq("feedback_sort_id", sortId);
+		}
+		wrapper.eq("feed_is_given", 1);
+		Page<Map<String, Object>> mapsPage = feedBService.selectMapsPage(new Page<FeedBack>(page, limit), wrapper);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("status",0);
-		resultMap.put("message","所有待解决的留言");
-		resultMap.put("total","");
-		resultMap.put("data","");
+		resultMap.put("message","所有已解决的留言");
+		resultMap.put("total",mapsPage.getTotal());
+		resultMap.put("data",mapsPage.getRecords());
 		return resultMap;
 	}
 	
@@ -120,8 +144,9 @@ public class FeedBackController {
 	@ResponseBody
 	public Msg addFeedBack(FeedBack feedBack) {
 		feedBack.setFeedbackSerious(0);
-		feedBack.setFeedIsDel(-1);
+		feedBack.setFeedIsDel(1);
 		feedBack.setFeedbackSortId(0);
+		feedBack.setFeedIsGiven(1);
 		boolean b = feedBService.insert(feedBack);
 		if(!b) {
 			return Msg.fail().add("msg", "反馈失败！请电话联系反馈吧！谢谢~");

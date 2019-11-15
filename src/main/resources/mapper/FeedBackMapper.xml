@@ -16,11 +16,14 @@
         <result column="create_time" property="createTime" />
         <result column="solve_time" property="solveTime" />
         <result column="feed_is_del" property="feedIsDel" />
+        <result column="feed_is_given" property="feedIsGiven" />
+        <result column="feed_destroy" property="feedDestroy" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         feedback_id, feedback_cust_name, feedback_cust_email, feedback_text, feedback_sort_id, feedback_serious, create_time, solve_time, feed_is_del
+    	,feed_is_given,feed_destroy
     </sql>
 
 </mapper>

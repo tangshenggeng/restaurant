@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -61,9 +62,45 @@ public class FeedBack extends Model<FeedBack> {
      * 是否解决（-1表示为待解决，1表示解决）
      */
     private Integer feedIsDel;
+    /**
+             * 是否赠送了优惠卷（1表示未赠送，0表示已赠送）
+     */
+    private Integer feedIsGiven;
+    /**
+     * 是否删除（-1表示删除，1表示未删除）
+     */
+    @TableField(fill = FieldFill.INSERT)
+    @TableLogic
+    private Integer feedDestroy;
 
+    public Integer getFeedIsGiven() {
+		return feedIsGiven;
+	}
 
-    public Integer getFeedbackId() {
+	public void setFeedIsGiven(Integer feedIsGiven) {
+		this.feedIsGiven = feedIsGiven;
+	}
+
+	public Integer getFeedDestroy() {
+		return feedDestroy;
+	}
+
+	public void setFeedDestroy(Integer feedDestroy) {
+		this.feedDestroy = feedDestroy;
+	}
+
+	@TableField(exist=false)
+    private FeedBackSort feedBackSort;
+    
+    public FeedBackSort getFeedBackSort() {
+		return feedBackSort;
+	}
+
+	public void setFeedBackSort(FeedBackSort feedBackSort) {
+		this.feedBackSort = feedBackSort;
+	}
+
+	public Integer getFeedbackId() {
         return feedbackId;
     }
 
