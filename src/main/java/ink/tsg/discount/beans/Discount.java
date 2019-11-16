@@ -33,7 +33,7 @@ public class Discount extends Model<Discount> {
     /**
      * 优惠乘数
      */
-    private Float discountNum;
+    private Double discountNum;
     /**
      * 是否可用（1表示可用，0表示不可用）
      */
@@ -56,11 +56,11 @@ public class Discount extends Model<Discount> {
         this.discountName = discountName;
     }
 
-    public Float getDiscountNum() {
+    public Double getDiscountNum() {
         return discountNum;
     }
 
-    public void setDiscountNum(Float discountNum) {
+    public void setDiscountNum(Double discountNum) {
         this.discountNum = discountNum;
     }
 

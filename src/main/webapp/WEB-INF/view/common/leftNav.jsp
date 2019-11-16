@@ -11,7 +11,9 @@
                         <a class="sidebar-sub-toggle"><i class="ti-layout"></i>反馈福利<span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="${APP_PATH}/feedBack/afterSolveFB">已解决的反馈</a></li>
-                            <li><a href="${APP_PATH}/feedBack/afterSolveFB">反馈分类和优惠卷</a></li>
+                            <li><a href="${APP_PATH}/discount/useCouponByCode">使用优惠卷</a></li>
+                            <li><a href="${APP_PATH}/feedDiscount/getAllCoupon">所有优惠卷</a></li>
+                            <li><a href="${APP_PATH}/feedBack/mangeSortAndDiscount">反馈分类和优惠卷</a></li>
                              
                         </ul>
                     </li>

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
+import ink.tsg.discount.service.FeedDiscountService;
 import ink.tsg.feedBack.beans.FeedBack;
-import ink.tsg.feedBack.beans.FeedBackSort;
 import ink.tsg.feedBack.service.FeedBackService;
 import ink.tsg.feedBack.service.FeedBackSortService;
 import ink.tsg.untils.Msg;
@@ -41,6 +41,17 @@ public class FeedBackController {
 	@Autowired
 	private FeedBackSortService feedBSService; //留言分类
 	
+	/**
+	 * 通过id得到反馈人信息
+	 * */
+	@RequestMapping(value="/getFeedBackById",method=RequestMethod.GET)
+	@ResponseBody
+	public Msg getFeedBackById(@RequestParam("id")Integer id) {
+		FeedBack selectById = feedBService.selectById(id);
+		return Msg.success().add("feedName", selectById.getFeedbackCustName())
+				.add("feedEmail", selectById.getFeedbackCustEmail())
+				.add("feedText",selectById.getFeedbackText()); 
+	} 
 	/**
 	 * 删除反馈
 	 * */

@@ -3,6 +3,8 @@ package ink.tsg.discount.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 
 import ink.tsg.discount.beans.Discount;
 import ink.tsg.discount.beans.FeedDiscount;
@@ -36,13 +39,51 @@ import ink.tsg.untils.Msg;
 public class FeedDiscountController {
 
 	@Autowired
-	private FeedDiscountService feedDiscountService;
+	private FeedDiscountService feedDiscountService;//优惠卷校验码信息
 	
 	@Autowired
-	private DiscountService discountService;
+	private DiscountService discountService;//优惠卷信息
 	
 	@Autowired
-	private FeedBackService feedBackService;
+	private FeedBackService feedBackService;//反馈信息
+	
+	/**
+	 * 更改中间的优惠卷信息
+	 * */
+	@RequestMapping(value="/changeCoupon",method=RequestMethod.GET)
+	@ResponseBody
+	public Msg changeCoupon(@RequestParam("id")Integer id,
+			@RequestParam("discountId")Integer discountId) {
+		FeedDiscount entity = new FeedDiscount();
+		entity.setId(id);
+		entity.setDiscountId(discountId);
+		boolean b = feedDiscountService.updateById(entity);
+		if(b) {
+			return Msg.success().add("msg","修改成功！");
+		}
+		return Msg.fail().add("msg", "修改失败！");
+	}
+	
+	/**
+	 * 得到所有的优惠卷
+	 * */
+	@RequestMapping(value="/getCouponList",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getCouponList(@RequestParam("kwCouponCode")String code,
+			@RequestParam("page")Integer page,@RequestParam("limit")Integer limit) {
+		EntityWrapper<FeedDiscount> wrapper = new EntityWrapper<>();
+		if(code!="") {
+			wrapper.eq("discount_code", code);
+		}
+		Page<Map<String, Object>> couponList = feedDiscountService.selectMapsPage(new Page<FeedDiscount>(page, limit), wrapper);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("status",0);
+		resultMap.put("message","所有优惠卷信息");
+		resultMap.put("total",couponList.getTotal());
+		resultMap.put("data",couponList.getRecords());
+		return resultMap;
+	}
+	
 	
 	/**
 	 * 根据反馈人的id得到优惠卷的信息
@@ -101,6 +142,10 @@ public class FeedDiscountController {
 		}
 	}
 	
-	
+	//===========页面跳转===========
+	@RequestMapping(value="/getAllCoupon",method=RequestMethod.GET)
+	public String getNotUsedCoupon() {
+		return "/feedback/couponList";
+	}
 }
 

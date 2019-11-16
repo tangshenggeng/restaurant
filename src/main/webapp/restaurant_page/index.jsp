@@ -522,7 +522,6 @@
 			
 		//留言
 		$("#c_submit").click(function(){
-			
 			$.ajax({
 				url:"${APP_PATH}/feedBack/addFeedBack",
 				method:"post",

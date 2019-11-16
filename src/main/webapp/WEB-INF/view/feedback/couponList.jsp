@@ -48,7 +48,7 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">导航</a></li>
-                                    <li class="active">已解决反馈</li>
+                                    <li class="active">已发放优惠卷</li>
                                 </ol>
                             </div>
                         </div>
@@ -61,36 +61,24 @@
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-body">
-									<form id="getFeedByConditionForm">
+									<form>
 										<div class="layui-form-item ">
-											<div class="col-lg-3">
-												<div class="form-group">
-													<label>反馈分类：</label> 
-													<select class="form-control" name="feedbackSortId" id="sortAfterSel">
-														<option value="0">---请选择---</option>
-														<option v-for="item in sort" :value="item.feedbackSortId">{{item.sortName}}</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-lg-3">
-												<div class="form-group">
-													<label>紧急性：</label><br>
-													<div class="el-radio">
-														<span class="margin-r">普通</span> <input
-															type="radio" name="feedbackSerious" class="feedbackSeriousInput" id="1_5"  value="0">
-														<label class="el-radio-style" for="1_5"></label>&nbsp;&nbsp;&nbsp;&nbsp;
-														<span class="margin-r">紧急</span> <input
-															type="radio" name="feedbackSerious" class="feedbackSeriousInput" id="1_4" value="1">
-														<label class="el-radio-style" for="1_4"></label>
+											<div class="col-lg-6">
+													<div class="input-group input-group-rounded">
+														<span class="input-group-btn">
+															<button class="btn btn-primary input-group-close-icon btn-group-left" type="reset">
+																<i class="ti-close"></i>
+															</button>
+														</span> 
+														<input type="text" id="kwCouponCode" class="form-control" placeholder="请输入优惠卷校验码">
+														<span class="input-group-btn">
+															<button class="btn btn-pink btn-group-right" id="getCouponByConditionBtn" type="button">
+															 <i class="ti-search"></i>
+															</button>
+														</span>
 													</div>
-												</div>
-												
 											</div>
-										</div>
-										<div class="layui-form-item">
-											<div class="layui-input-inline">
-											<button type="button" id="getFeedByConditionBtn" class="btn btn-success btn-outline btn-rounded m-b-10 m-l-5">筛选</button>
-										</div>
+											
 										</div>
 									</form>
 								</div>
@@ -101,7 +89,7 @@
                     	<div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>反馈信息</h4>
+                                    <h4>优惠卷信息</h4>
 									<div class="card-header-right-icon">
 										<ul>
 											<li class="card-close" id="lookTBIcon"><i class="ti-email"></i></li>
@@ -113,7 +101,7 @@
 									</div>
                                 </div>
                                 <div class="card-body">
-                                    <table id="feedBackTbAfterSolve" class="table table-responsive table-hover" lay-filter="afterSolverTBFilter">
+                                    <table id="CouponListTb" class="table table-responsive table-hover" lay-filter="couponListTBFilter">
                                         
                                     </table>
                                 </div>
@@ -131,40 +119,35 @@
 </div>
 <!-- /# content wrap -->
 <!-- 模态框 -->
-<div style="display: none;" id="editFeedBlackModal">
+<div style="display: none;" id="feedInfoModal">
 		<div class="layui-card">
 			<div class="layui-card-body">
 				<div id="feedText">
 				</div><br>
 				<div class="form-group">
-                    <h4>反馈分类： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="label btn-primary" id="modalSortSpan">New</span></h4>
+                    <h4>称呼： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="label btn-primary" id="modalFeedNameSpan">New</span></h4>
                	</div>
 				<div class="form-group">
-                    <h4>反馈紧急性： &nbsp;&nbsp;<span class="label btn-danger" id="modalSeriousSpan">NEW</span></h4>
+                    <h4>Email： &nbsp;&nbsp;<span class="label btn-danger" id="modalFeedEmailSpan">NEW</span></h4>
                	</div>	
 				<div class="form-group">
-                    <h3>优惠卷验证码： &nbsp;&nbsp;<span class="label btn-danger" id="modalCodeSpan">没有优惠码</span></h3>
-               	</div>
-               	<div class="form-group">
-                    <h4>是否已使用： &nbsp;&nbsp;<span class="label btn-danger" id="modalIsUsedSpan"></span></h4>
+                    <h3>反馈内容： &nbsp;&nbsp;<br><br><span class="label btn-success" id="modalFeedTextSpan">NEW</span></h3>
                	</div>	
 			</div>
 		</div>
 </div>
-<div style="display: none;" id="giveCouponModal">
+<div style="display: none;" id="changeCouponModal">
 		<div class="layui-card">
 			<div class="layui-card-body">
 			  <form>
-			  	<input type="hidden" name="feedId" id="giveCouponFeedId"/>
-			  	<input type="hidden" id="giveCouponEmail"/>
+			  	<input type="hidden" name="id" id="feedDiscountId"/>
 				<div class="form-group">
                      <label>选择优惠卷</label>
-                     <select class="form-control" name="discountId" id="giveCouponSel">
-                         <option value="0">---请选择---</option>
+                     <select class="form-control" name="discountId" id="changeCouponSel">
                          <option v-for="item in discount" :value="item.discountId">{{item.discountName}}</option>
                      </select>
                  </div>
-                 <button type="button" id="giveCouponBtn" class="btn btn-pink btn-outline m-b-10 m-l-5">发放</button>
+                 <button type="button" id="changeCouponBtn" class="btn btn-pink btn-outline m-b-10 m-l-5">修改</button>
                </form>
 			</div>
 		</div>
@@ -188,45 +171,31 @@
 	});
 	function renderTb(){
 		layui.use(['table','form','layer'], function(){
-			  var sortId = $("#sortAfterSel").val();
-			  var serious = $(".feedbackSeriousInput:checked").val();
+			  var kwCode = $("#kwCouponCode").val();
 			  var table = layui.table;
 			  var form = layui.form;
 			  var layer = layui.layer;
 			  //第一个实例
 			  table.render({
-			    elem: '#feedBackTbAfterSolve'
-			    ,height: 312
-			    ,url: '${APP_PATH}/feedBack/getAlreadySolvedFeedList' //数据接口
+			    elem: '#CouponListTb'
+			    ,height: 600
+			    ,url: '${APP_PATH}/feedDiscount/getCouponList' //数据接口
 			    ,page: true //开启分页
-			    ,method : "POST"
-				,dataType : 'json'
-				,processData : false
-				,contentType : "application/json"//必须指定，否则会报415错误
 			    ,where: {
-			    	solved:0,
-			    	sortId : sortId,
-			    	serious:serious,
+			    	kwCouponCode : kwCode,
 			    }
 			    ,cols: [[ //表头
-			      {field: 'feedbackId', title: '#',hide:true,rowspan:2,align:"center"}
-			      ,{field: 'feedbackCustName', title: '反馈人称呼',rowspan:2,align:"center"}
-			      ,{field: 'feedbackCustEmail', title: 'Email',rowspan:2,align:"center"}
-			      ,{title: '反馈状态',colspan:2,align:"center"}
-			      ,{field: 'solveTime', title: '解决时间',rowspan:2,align:"center"}
-			      ,{fixed: 'right', title: '操作',width:150,width:200, align:'center', toolbar: '#barDemo',rowspan:2,align:"center"}
-			    ],
-			    [
-		    	   {field: 'feedbackSerious',align:"center", style:"color: orange;", title: '紧急性',templet: function(d){
-			    	  return d.feedbackSerious == false?"普通":"紧急"
-			      	}}
-			      ,{field: 'feedIsDel',align:"center", style:"color: red;",title: '是否解决',templet: function(d){
-			    	  return d.feedIsDel == true?"待解决":"已解决"
-			      	}}
-			    ]
-			    ]
+			      {field: 'id', title: '#',hide:true,align:"center"}
+			      ,{field: 'discountCode', title: '校验码',align:"center"}
+			      ,{field: 'isUsed', title: '使用情况',align:"center",templet: function(d){
+			          return d.isUsed==true?"<span style='color:orange'>已使用</span>":"未使用"
+			      }}
+			      ,{field: 'giveTime', title: '发放时间',align:"center"}
+			      ,{field: 'usedTime', title: '使用时间',align:"center",style:"color:red"}
+			      ,{fixed: 'right', title: '操作', toolbar: '#barDemo',align:"center"}
+			    ]]
 			    ,text: {
-			        none: '暂时没有需要处理的留言'
+			        none: '暂时没有需要处理的优惠卷条目'
 			    }
 			    ,skin: 'line' //行边框风格
 			    ,size: 'lg'
@@ -239,16 +208,26 @@
 				    };
 				  }
 			  });
-			  table.on('tool(afterSolverTBFilter)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-				  
+			  table.on('tool(couponListTBFilter)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
 				  var data = obj.data; //获得当前行数据
+				  console.log(data)
 				  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 				  var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
-				  if(layEvent === 'giveCoupon'){ //解决
-					  $("#giveCouponFeedId").val(data.feedbackId);
-					  $("#giveCouponEmail").val(data.feedbackCustEmail);
+				  if(layEvent === 'changeCoupon'){ //解决
+					  $("#feedDiscountId").val(data.id);
+					  if(data.isUsed == true){
+						  layer.msg("优惠卷已使用！不可查看和更改！",{icon:5})
+						  return;
+					  }
+					  $("#changeCouponSel>option").each(function(){
+						  var disId = $(this).val();
+						  var discountId = data.discountId;
+						  if(disId==discountId){
+							  $(this).attr("selected","selected")
+						  }
+					  }); 
 					  var index = layer.open({
-							title : '发放优惠卷',
+							title : '修改优惠卷',
 							fix : true,
 							resize :false,
 							move: false,
@@ -257,49 +236,29 @@
 							shadeClose : false,
 							shade : 0.4,
 							type : 1,
-							content : $('#giveCouponModal')
+							content : $('#changeCouponModal')
 						});
 				  } else if(layEvent === 'lookFeed'){ //查看
-					  $("#modalIsUsedSpan").parent().removeAttr("hidden");
-					  $("#feedText").html(data.feedbackText);
-				  	  $.ajax({
-				  		  url:"${APP_PATH}/feedBackSort/getSortName?id="+data.feedbackSortId,
-				  		  method:"get",
-				  		  success:function(res){
-				  			  if(res.code == 100){
-				  				 $("#modalSortSpan").text(res.extend.sortName);  
-				  			  }else{
-				  				  layer.msg("出错了！",{icon: 5})
-				  			  }
-				  		  },error:function(){
-				  			  console.log("查看已解决的反馈信息时系统出错")
-				  		  }
-				  	  });
-				      var serous;
-				      data.feedbackSerious==true?serous="紧急":serous="普通";
-				      $("#modalSeriousSpan").text(serous);
+					  
 				      $.ajax({
-				    	  url:"${APP_PATH}/feedDiscount/getFeedDiscountInfo?id="+data.feedbackId,
+				    	  url:"${APP_PATH}/feedBack/getFeedBackById?id="+data.feedId,
 				  		  method:"get",
 				  		  success:function(res){
+				  			  console.log(res)
 				  			  if(res.code == 100){
-				  				 $("#modalCodeSpan").text(res.extend.code);
-				  				 if(res.extend.isUse == 0){
-				  					 $("#modalIsUsedSpan").text("未使用")
-				  				 }else{
-				  					$("#modalIsUsedSpan").text("已使用") 
-				  				 }
+				  				 $("#modalFeedNameSpan").text(res.extend.feedName);
+				  				 $("#modalFeedEmailSpan").text(res.extend.feedEmail);
+				  				 $("#modalFeedTextSpan").text(res.extend.feedText);
+				  				 
 				  			  }else{
-				  				$("#modalIsUsedSpan").parent().attr("hidden","true"); 
-				  				$("#modalCodeSpan").text(res.extend.msg);
+				  				layer.msg("查看反馈人信息失败！",{icon:5});
 				  			  }
 				  		  },error:function(){
 				  			  console.log("查看已解决的反馈信息时系统出错")
 				  		  }
 				      });
-				      
 					  var index = layer.open({
-							title : '反馈内容',
+							title : '反馈人信息',
 							fix : true,
 							resize :false,
 							move: false,
@@ -308,29 +267,8 @@
 							shadeClose : true,
 							shade : 0.4,
 							type : 1,
-							content : $('#editFeedBlackModal')
+							content : $('#feedInfoModal')
 						});
-					  
-				  } else if(layEvent === 'del'){
-					  layer.confirm('确认删除吗？', function(index){
-					      $.ajax({
-					    	  url:"${APP_PATH}/feedBack/delFeedBack?id="+data.feedbackId,
-					    	  method:"GET",
-					    	  success:function(res){
-					    		  if(res.code==100){
-					    			  layer.msg(res.extend.msg,{icon:6},function(){
-					    				  renderTb();
-					    			  });
-					    		  }else{
-					    			  layer.msg(res.extend.msg,{icon:5});
-					    		  }
-					    	  },error:function(){
-					    		  layer.msg("删除失败！系统出错！",{icon:5});
-					    	  }
-					      })
-					      layer.closeAll();
-					    });
-					  
 				  }else if(layEvent === 'LAYTABLE_TIPS'){
 				  
 				    layer.alert('Hi，头部工具栏扩展的右侧图标。');
@@ -338,7 +276,7 @@
 				});
 			});
 	}
-	$("#getFeedByConditionBtn").click(function(){
+	$("#getCouponByConditionBtn").click(function(){
 		renderTb();
 	});
 	//筛选的select
@@ -365,11 +303,11 @@
 	$("#lookTBIcon").click(function(){
 		layui.use('layer', function(){
 			var table = layui.layer;
-			layer.msg("已解决的反馈信息");
+			layer.msg("优惠卷信息");
 		})
 	});
 	var giveCouponSel = new Vue({
-		el:"#giveCouponSel",
+		el:"#changeCouponSel",
 		data:{
 			discount:[]
 		},
@@ -384,37 +322,26 @@
 		}
 	});
 	
-	$("#giveCouponBtn").click(function(){
+	$("#changeCouponBtn").click(function(){
 		layui.use('layer', function(){
 			var layer = layui.layer;
-			var discountId = $("#giveCouponSel").val();
-			var feedId = $("#giveCouponFeedId").val();
-			var feedEmail = $("#giveCouponEmail").val();
-			if(discountId == 0){
-				layer.msg("请选择优惠！",{icon:2});
-				return;
-			}
-			
+			var discountId = $("#changeCouponSel").val();
+			var id = $("#feedDiscountId").val();
 			$.ajax({
-				url:"${APP_PATH}/feedDiscount/giveCoupon?discountId="+discountId+"&feedId="+feedId+"&email="+feedEmail,
+				url:"${APP_PATH}/feedDiscount/changeCoupon?discountId="+discountId+"&id="+id,
 				method:"get",
-				beforeSend: function () {
-					 $("#giveCouponBtn").attr("disabled","disabled")
-					 layer.load(3);
-				},success:function(res){
+				success:function(res){
 					if(res.code == 100){
 						layer.msg(res.extend.msg,{icon:1},function(){
 							renderTb();
+							
 						});
 					}else{
 						layer.msg(res.extend.msg,{icon:2},function(){
 							renderTb();
 						});
 					}
-				},complete: function () {
-					$("#giveCouponBtn").removeAttr("disabled")
-					layer.closeAll();
-			    },error:function(){
+				},error:function(){
 					layer.msg("发放失败！系统出错！",{icon:5});
 				}
 			});
@@ -422,9 +349,8 @@
 	});
 </script>
 <script type="text/html" id="barDemo">
-<button type="button" class="btn btn-warning btn-xs btn-outline" lay-event="lookFeed">查看</button>
-<button type="button" class="btn btn-danger btn-xs btn-outline" lay-event="giveCoupon">赠送优惠卷</button>
-<button type="button" class="btn btn-danger btn-xs btn-outline" lay-event="del">删除</button>
+<button type="button" class="btn btn-warning btn-xs btn-outline" lay-event="lookFeed">所属人</button>
+<button type="button" class="btn btn-danger btn-xs btn-outline" lay-event="changeCoupon">优惠卷</button>
 </script>
 </body>
 
