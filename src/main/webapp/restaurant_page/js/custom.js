@@ -414,8 +414,9 @@
 	var dateTimePicker = function() {
 		jQuery('#time').timepicker();
 		jQuery('#date').datepicker({
-		  'format': 'm/d/yyyy',
-		  'autoclose': true
+		  'format': 'mm/dd/yyyy',
+		  'autoclose': true,
+		  language: 'zh-CN',
 		});
 	};
 

@@ -147,5 +147,10 @@ public class FeedDiscountController {
 	public String getNotUsedCoupon() {
 		return "/feedback/couponList";
 	}
+	@RequestMapping(value="/mangeSortAndDiscount",method=RequestMethod.GET)
+	public String mangeSortAndDiscount() {
+		return "/feedback/sort-discount";
+	}
+	
 }
 

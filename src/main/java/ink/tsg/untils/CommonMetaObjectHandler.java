@@ -17,18 +17,17 @@ public class CommonMetaObjectHandler extends MetaObjectHandler {
 	@Override
 	public void insertFill(MetaObject metaObject) {
 		// custState 自动填充为 1（未删除状态）
-		
-		/*
-		 * Object custState = getFieldValByName("custState", metaObject); if (custState
-		 * == null) { setFieldValByName("custState", 1, metaObject); } Object waresDel =
-		 * getFieldValByName("waresDel", metaObject); if (waresDel == null) {
-		 * setFieldValByName("waresDel", 1, metaObject); } Object carState =
-		 * getFieldValByName("carState", metaObject); if (carState == null) {
-		 * setFieldValByName("carState", 1, metaObject); }
-		 */
 		Object contactState = getFieldValByName("feedDestroy", metaObject);
 		if (contactState == null) {
 			setFieldValByName("feedDestroy", 1, metaObject);
+		}
+		Object isDel = getFieldValByName("isDel", metaObject);
+		if (isDel == null) {
+			setFieldValByName("isDel", 1, metaObject);
+		}
+		Object isArrival = getFieldValByName("isArrival", metaObject);
+		if (isArrival == null) {
+			setFieldValByName("isArrival", 200, metaObject);
 		}
 		 
 		// creatTime自动填充为当前时间

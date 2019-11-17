@@ -14,6 +14,7 @@
 <!--     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Pinyon+Script" rel="stylesheet">
  -->    <link rel="stylesheet" href="${APP_PATH}/restaurant_page/css/styles-merged.css">
     <link rel="stylesheet" href="${APP_PATH}/restaurant_page/css/style.min.css">
+    <link rel="stylesheet" href="${APP_PATH}/static/layui/css/layui.css">
 
     <!--[if lt IE 9]>
       <script src="js/vendor/html5shiv.min.js"></script>
@@ -301,28 +302,28 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 probootstrap-animate">
-            <form method="post" class="probootstrap-form">
+            <form class="probootstrap-form" id="appointment_form">
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="people">人数</label>
                     <div class="form-field">
                       <i class="icon icon-chevron-down"></i>
-                      <select name="people" id="people" class="form-control">
-                        <option value="#">1 人</option>
-                        <option value="#">2 人</option>
-                        <option value="#">3 人</option>
-                        <option value="#">4+ 人</option>
+                      <select name="custNum" class="form-control">
+                        <option value="1">1 人</option>
+                        <option value="2">2 人</option>
+                        <option value="3">3 人</option>
+                        <option value="4">3+ 人</option>
                       </select>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="date">日期</label>
+                    <label for="test1">日期</label>
                     <div class="form-field">
                       <i class="icon icon-calendar"></i>
-                      <input type="text" id="date" class="form-control">
+                      <input type="text" name="appointmentDate" class="layui-input form-control" id="test1" placeholder="请选择日期">
                     </div>
                   </div>
                 </div>
@@ -331,7 +332,8 @@
                     <label for="time">时间</label>
                     <div class="form-field">
                       <i class="icon icon-clock"></i>
-                      <input type="text" id="time" class="form-control">
+                      <!-- <input type="text" id="time" class="form-control"> -->
+                      <input type="text" name="appointmentTime" class="layui-input form-control" id="test-limit3" placeholder="请选择时区">
                     </div>
                   </div>
                 </div>
@@ -343,7 +345,7 @@
                     <label for="name">称呼</label>
                     <div class="form-field">
                       <i class="icon icon-user2"></i>
-                      <input type="text" id="name" class="form-control" placeholder="Your full name">
+                      <input type="text" id="name" name="custName" class="form-control" placeholder="请输入您的称呼">
                     </div>
                   </div>
                 </div>
@@ -352,7 +354,7 @@
                     <label for="phone">电话</label>
                     <div class="form-field">
                       <i class="icon icon-phone"></i>
-                      <input type="text" id="phone" class="form-control" placeholder="Your phone">
+                      <input type="text" id="phone" name="custPhone" class="form-control" placeholder="请输入您的电话">
                     </div>
                   </div>
                 </div>
@@ -360,7 +362,7 @@
                   <div class="form-group">
 	                <label for="c_message">备注</label>
 	                <div class="form-field">
-	                  <textarea name="c_message" cols="" rows="2" class="form-control"></textarea>
+	                  <textarea name="custMessage" cols="" rows="2" class="form-control" placeholder="请备注您的口味"></textarea>
 	                </div>
 	              </div>
                 </div>
@@ -368,7 +370,8 @@
               </div>
               <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                  <input type="submit" name="submit" id="submit" value="预定" class="btn btn-lg btn-primary btn-block">
+                  <input type="button" id="appointment_btn" value="预定" class="btn btn-lg btn-primary btn-block">
+                  <input type="reset" id="appointment_reset" value="重置" class="btn btn-lg btn-info btn-block">
                 </div>
               </div>
               
@@ -492,10 +495,10 @@
               <h3>营业时间</h3>
               <div class="row">
                 <div class="col-md-4">
-                  <p>周一 - 周五 <br> 5:30pm - 10:00pm</p>
+                  <p>周一 - 周五 <br> 7:30am - 10:00pm</p>
                 </div>
                 <div class="col-md-4">
-                  <p>周六 - 周日 <br> 5:30pm - 12:00pm</p>
+                  <p>周六 - 周日 <br> 7:30pm - 12:00pm</p>
                 </div>
               </div>
             </div>
@@ -517,9 +520,59 @@
 
     <script src="${APP_PATH}/restaurant_page/js/scripts.min.js"></script>
     <script src="${APP_PATH}/restaurant_page/js/custom.min.js"></script>
-    <script src="${APP_PATH}/static/layer/layer.js"></script>
+   <%--  <script src="${APP_PATH}/static/layer/layer.js"></script> --%>
+    <script src="${APP_PATH}/static/layui/layui.all.js"></script>
 	<script type="text/javascript">
-			
+		//预约
+		$("#appointment_btn").click(function(){
+			var varreg  = /^\d{7,11}$/;
+			var phone = $("#phone").val();
+			if(!varreg.test(phone)){
+				layer.msg("请正确输入号码！",{icon:5});
+				return;
+			}
+			var data = $("#appointment_form").serialize();
+			$.ajax({
+				url:"${APP_PATH}/appointment/addAppointment",
+				method:"POST",
+				data:data,
+				success:function(res){
+					if(res.code==100){
+						layer.msg(res.extend.msg,{icon:6},function(){
+							$("#appointment_reset").click();
+						})
+					}else{
+						layer.msg(res.extend.msg,{icon:5})
+					}
+				},error:function(){
+					layer.msg("系统出错！请您电话预约，同时希望您能反馈给我们~",{icon:5})
+					console.log("系统出错！")
+				}
+			});
+		});
+	
+	
+	
+		layui.use('laydate', function(){
+			  var laydate = layui.laydate;
+			  //执行一个laydate实例
+			  laydate.render({
+			    elem: '#test1'
+			    ,eventElem: '#test1'
+			    ,trigger: 'click'
+			    ,min: 1
+			    ,max: 14
+			    ,showBottom: false
+			  });
+			  laydate.render({
+				    elem: '#test-limit3'
+				    ,type: 'time'
+				    ,min: '08:00:00'
+				    ,max: '22:00:00'
+				    ,trigger: 'click'
+				    ,btns: ['clear', 'confirm']
+				  });
+			});	
 		//留言
 		$("#c_submit").click(function(){
 			$.ajax({

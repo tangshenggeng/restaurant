@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.tsg.appointment.mapper.AppointmentMapper">
+
+    <!-- 开启二级缓存 -->
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="ink.tsg.appointment.beans.Appointment">
+        <id column="appointment_id" property="appointmentId" />
+        <result column="cust_name" property="custName" />
+        <result column="cust_phone" property="custPhone" />
+        <result column="cust_num" property="custNum" />
+        <result column="cust_message" property="custMessage" />
+        <result column="appointment_date" property="appointmentDate" />
+        <result column="appointment_time" property="appointmentTime" />
+        <result column="create_time" property="createTime" />
+        <result column="is_arrival" property="isArrival" />
+        <result column="is_del" property="isDel" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        appointment_id, cust_name, cust_phone, cust_num, cust_message, appointment_date, appointment_time, create_time, is_arrival, is_del
+    </sql>
+
+</mapper>

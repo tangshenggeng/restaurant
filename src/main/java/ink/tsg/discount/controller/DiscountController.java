@@ -3,7 +3,9 @@ package ink.tsg.discount.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 
 import ink.tsg.discount.beans.Discount;
 import ink.tsg.discount.beans.FeedDiscount;
 import ink.tsg.discount.service.DiscountService;
 import ink.tsg.discount.service.FeedDiscountService;
+import ink.tsg.feedBack.beans.FeedBackSort;
 import ink.tsg.untils.Msg;
 
 /**
@@ -38,6 +42,42 @@ public class DiscountController {
 	@Autowired
 	private FeedDiscountService feedDService;//中间表
 	
+	/**
+	 * 添加优惠卷
+	 * */
+	@RequestMapping(value="/addDiscount",method=RequestMethod.GET)
+	@ResponseBody
+	public Msg addSort(@RequestParam("discountName") String discountName) {
+		Discount entity = new Discount();
+		entity.setDiscountName(discountName);
+		entity.setDiscountDel(1);
+		boolean b = discountService.insert(entity);
+		if(b) {
+			return Msg.success().add("msg", "添加成功！");
+		}
+		return Msg.fail().add("msg", "添加失败！");
+	}
+	
+	
+	
+	/**
+	 * 得到所有的优惠卷，CRUD用
+	 * */
+	@RequestMapping(value="/getDiscountList",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getFeedSortList(@RequestParam("page")Integer page,
+			@RequestParam("limit")Integer limit) {
+		EntityWrapper<Discount> wrapper = new EntityWrapper<>();
+		wrapper.eq("discount_del", 1);
+		Page<Map<String, Object>> mapsPage = discountService.selectMapsPage(new Page<Discount>(page, limit), wrapper);
+		Map<String,Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("status",0);
+		resultMap.put("message","所有优惠卷信息");
+		resultMap.put("total",mapsPage.getTotal());
+		resultMap.put("data",mapsPage.getRecords());
+		return resultMap;
+	
+	}
 	/**
 	 * 确认使用
 	 * */

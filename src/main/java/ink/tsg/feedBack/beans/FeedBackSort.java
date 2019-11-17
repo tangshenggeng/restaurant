@@ -34,7 +34,7 @@ public class FeedBackSort extends Model<FeedBackSort> {
      * 是否删除（-1是删除，1是未删除）
      */
     private Integer isdel;
-
+    
 
     public Integer getFeedbackSortId() {
         return feedbackSortId;

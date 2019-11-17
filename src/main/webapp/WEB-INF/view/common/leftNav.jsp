@@ -8,31 +8,22 @@
                     </li>
                     
                     <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-layout"></i>反馈福利<span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <a class="sidebar-sub-toggle"><i class="ti-email"></i>反馈福利<span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="${APP_PATH}/feedBack/afterSolveFB">已解决的反馈</a></li>
                             <li><a href="${APP_PATH}/discount/useCouponByCode">使用优惠卷</a></li>
                             <li><a href="${APP_PATH}/feedDiscount/getAllCoupon">所有优惠卷</a></li>
-                            <li><a href="${APP_PATH}/feedBack/mangeSortAndDiscount">反馈分类和优惠卷</a></li>
+                            <li><a href="${APP_PATH}/feedDiscount/mangeSortAndDiscount">反馈分类和优惠卷</a></li><!-- 放在了中间表的控制器 -->
                              
                         </ul>
                     </li>
                     <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-panel"></i> Components <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <a class="sidebar-sub-toggle"><i class="ti-time"></i> 预约管理 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="uc-calendar.html">Calendar</a></li>
-                            <li><a href="uc-carousel.html">Carousel</a></li>
-                              
-                            <li><a href="uc-datamap.html">Datamap</a></li>
-                            <li><a href="uc-todo-list.html">To do</a></li>
-                            <li><a href="uc-scrollable.html">Scrollable</a></li>
-                            <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
-                            <li><a href="uc-toastr.html">Toastr</a></li>
-                            <li><a href="uc-range-slider-basic.html">Basic Range Slider</a></li>
-                            <li><a href="uc-range-slider-advance.html">Advance Range Slider</a></li>
-                            <li><a href="uc-nestable.html">Nestable</a></li>
-                            <li><a href="uc-portlets.html">Portlets</a></li>
-                              
+                            <li><a href="${APP_PATH}/appointment/toValidAppointPage">有效预约</a></li>
+                            <li><a href="uc-calendar.html">失效预约</a></li>
+                            <li><a href="uc-calendar.html">有效预约</a></li>
+                            
                         </ul>
                     </li>
                     <li>

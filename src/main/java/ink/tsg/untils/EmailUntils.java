@@ -12,9 +12,9 @@ public class EmailUntils {
     //发件人
     private static final String senderEmail = "1528474876@qq.com";
     //发件人昵称
-    private static final String senderNick = "项遇您美食馆";
+    private static final String senderNick = "想遇您美食馆";
     //主题
-    private static final String emailSubject = "来自“项遇您”美使馆的优惠卷";
+    private static final String emailSubject = "来自“想遇您”美使馆的优惠卷";
     
     
     public static boolean sendEmail(String receive ,String code,String discountName) {
@@ -26,7 +26,7 @@ public class EmailUntils {
             email.setAuthentication(senderEmail,userInfo);
             email.setCharset(chartset);
             email.setSubject(emailSubject);
-            String sendHtml = "为了感谢您的反馈，我们给您一张<span style='color:orange;'>&nbsp;&nbsp;&nbsp;&nbsp;"+discountName+"</span>,凭校验码："+code+"&nbsp;&nbsp;使用！";
+            String sendHtml = "为了感谢您的反馈，我们给您一张<span style='color:orange;'>&nbsp;&nbsp;&nbsp;&nbsp;"+discountName+"</span>,凭校验码：<span style='color:blue;'>"+code+"</span>&nbsp;&nbsp;使用！";
             email.setHtmlMsg(sendHtml);
             // 收件人
             if (null != receive) {
