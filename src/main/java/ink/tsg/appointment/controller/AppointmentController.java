@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -34,6 +35,50 @@ public class AppointmentController {
 
 	@Autowired
 	private AppointmentService appService;
+	
+	/**
+	 * 结算
+	 * */
+	@RequestMapping(value="/determinAppoint",method=RequestMethod.GET)
+	@ResponseBody
+	public Msg determinAppoint(@RequestParam("id")Integer id) {
+		boolean b = appService.deleteById(id);
+		if(b) {
+			return Msg.success().add("msg", "成功！");
+		}
+		return Msg.fail().add("msg","失败！");
+	}
+	
+	
+	/**
+	 * 确认顾客到来
+	 * */
+	@RequestMapping(value="/changeCustArrival",method=RequestMethod.GET)
+	@ResponseBody
+	public Msg changeCustArrival(@RequestParam("id") Integer id) {
+		
+		Appointment app = new Appointment();
+		app.setAppointmentId(id);
+		app.setIsArrival(100);
+		boolean b = appService.updateById(app);
+		if(b) {
+			return Msg.success().add("msg", "确认成功！");
+		}
+		return Msg.fail().add("msg","确认失败！");
+	}
+	
+	/**
+	 * 修改
+	 * */
+	@RequestMapping(value="/changeAppointInfo",method=RequestMethod.POST)
+	@ResponseBody
+	public Msg changeAppointInfo(Appointment app) {
+		boolean b = appService.updateById(app);
+		if(b) {
+			return Msg.success().add("msg", "修改成功！");
+		}
+		return Msg.fail().add("msg","修改失败！");
+	}
 	
 	/**
 	 * 得到所有有效的预约
@@ -64,7 +109,6 @@ public class AppointmentController {
 			String nowTime = sdf.format(nowDate);
 			wrapper.eq("appointment_date", nowTime);
 		}
-		wrapper.eq("is_arrival", 200);
 		Page<Map<String, Object>> mapsPage = appService.selectMapsPage(new Page<Appointment>(page, limit), wrapper);
 		Map<String,Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("status",0);
@@ -93,6 +137,10 @@ public class AppointmentController {
 	public String toValidAppointPage() {
 		return "/appointment/valid-appoint";
 	}
-	
+	//去往添加预约页面
+	@RequestMapping(value="/toAddApointPage",method=RequestMethod.GET)
+	public String toAddApointPage() {
+		return "/appointment/addApointment";
+	}
 }
 

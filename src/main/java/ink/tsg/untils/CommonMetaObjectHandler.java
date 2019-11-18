@@ -25,6 +25,10 @@ public class CommonMetaObjectHandler extends MetaObjectHandler {
 		if (isDel == null) {
 			setFieldValByName("isDel", 1, metaObject);
 		}
+		Object foodState = getFieldValByName("foodState", metaObject);
+		if (foodState == null) {
+			setFieldValByName("foodState", 1, metaObject);
+		}
 		Object isArrival = getFieldValByName("isArrival", metaObject);
 		if (isArrival == null) {
 			setFieldValByName("isArrival", 200, metaObject);

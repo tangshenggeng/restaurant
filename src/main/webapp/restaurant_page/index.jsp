@@ -132,7 +132,6 @@
       <div class="container">
         <div class="row">
           <div class="probootstrap-cell-retro">
-            <div class="half">
 
               <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
                 <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_1.jpg);"></div>
@@ -158,9 +157,32 @@
                   <p class="price">$20.99</p>
                 </div>
               </div>
+              <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
+                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_1.jpg);"></div>
+                <div class="text text-center">
+                  <h3>Baked Potato Pizza</h3>
+                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
+                  <p class="price">$20.99</p>
+                </div>
+              </div>
+              <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
+                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_2.jpg);"></div>
+                <div class="text text-center">
+                  <h3>Salted Fried Chicken</h3>
+                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
+                  <p class="price">$19.99</p>
+                </div>
+              </div>
+              <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
+                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_3.jpg);"></div>
+                <div class="text text-center">
+                  <h3>Imported Salmon Steak</h3>
+                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
+                  <p class="price">$20.99</p>
+                </div>
+              </div>
 
-            </div>
-            <div class="half">
+            <%-- <div class="half">
 
               <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
                 <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_4.jpg);"></div>
@@ -187,7 +209,7 @@
                 </div>
               </div>
               
-            </div>
+            </div> --%>
           </div>
         </div>
       </div>
@@ -209,9 +231,9 @@
     <section class="probootstrap-section probootstrap-bg-white">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
+        
             <ul class="menus">
-              <li>
+              <li  class="col-md-5" style="margin: 5px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_1.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
                   <span class="price">$22.99</span>
@@ -219,7 +241,7 @@
                   <p>Crab / Potatoes / Rice</p>
                 </div>
               </li>
-              <li>
+              <li  class="col-md-5" style="margin: 5px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_2.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
                   <span class="price">$22.99</span>
@@ -227,7 +249,7 @@
                   <p>Crab / Potatoes / Rice</p>
                 </div>
               </li>
-              <li>
+              <li  class="col-md-5" style="margin: 5px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_3.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
                   <span class="price">$22.99</span>
@@ -235,7 +257,39 @@
                   <p>Crab / Potatoes / Rice</p>
                 </div>
               </li>
-              <li>
+              <li  class="col-md-5" style="margin: 5px 45px">
+                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_4.jpg" alt="Free Bootstrap Template "></figure>
+                <div class="text">
+                  <span class="price">$22.99</span>
+                  <h3>Salted Fried Chicken</h3>
+                  <p>Crab / Potatoes / Rice</p>
+                </div>
+              </li>
+              <li  class="col-md-5" style="margin: 5px 45px">
+                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_1.jpg" alt="Free Bootstrap Template "></figure>
+                <div class="text">
+                  <span class="price">$22.99</span>
+                  <h3>Fried Potatoes with Garlic</h3>
+                  <p>Crab / Potatoes / Rice</p>
+                </div>
+              </li>
+              <li  class="col-md-5" style="margin: 5px 45px">
+                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_2.jpg" alt="Free Bootstrap Template "></figure>
+                <div class="text">
+                  <span class="price">$22.99</span>
+                  <h3>Tuna Roast Source</h3>
+                  <p>Crab / Potatoes / Rice</p>
+                </div>
+              </li>
+              <li  class="col-md-5" style="margin: 5px 45px">
+                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_3.jpg" alt="Free Bootstrap Template "></figure>
+                <div class="text">
+                  <span class="price">$22.99</span>
+                  <h3>Roast Beef (4 sticks)</h3>
+                  <p>Crab / Potatoes / Rice</p>
+                </div>
+              </li>
+              <li  class="col-md-5" style="margin: 5px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_4.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
                   <span class="price">$22.99</span>
@@ -244,8 +298,8 @@
                 </div>
               </li>
             </ul>
-          </div>
-          <div class="col-md-6">
+          
+          <%-- <div class="col-md-6">
             <ul class="menus">
               <li>
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_5.jpg" alt="Free Bootstrap Template "></figure>
@@ -280,7 +334,8 @@
                 </div>
               </li>
             </ul>
-          </div>
+          </div> --%>
+          
         </div>
       </div>
     </section>
@@ -396,6 +451,39 @@
     <section class="probootstrap-section">
       <div class="container">
         <div class="row">
+          <div class="col-md-4 col-sm-4 probootstrap-animate">
+            <div class="probootstrap-block-image">
+              <figure><img src="${APP_PATH}/restaurant_page/img/img_square_2.jpg" alt="Free Bootstrap Template "></figure>
+              <div class="text">
+                <span class="date">June 29, 2017</span>
+                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 probootstrap-animate">
+            <div class="probootstrap-block-image">
+              <figure><img src="${APP_PATH}/restaurant_page/img/img_square_3.jpg" alt="Free Bootstrap Template "></figure>
+              <div class="text">
+                <span class="date">June 29, 2017</span>
+                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 probootstrap-animate">
+            <div class="probootstrap-block-image">
+              <figure><img src="${APP_PATH}/restaurant_page/img/img_square_4.jpg" alt="Free Bootstrap Template "></figure>
+              <div class="text">
+                <span class="date">June 29, 2017</span>
+                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
+              </div>
+            </div>
+          </div>
           <div class="col-md-4 col-sm-4 probootstrap-animate">
             <div class="probootstrap-block-image">
               <figure><img src="${APP_PATH}/restaurant_page/img/img_square_2.jpg" alt="Free Bootstrap Template "></figure>
@@ -564,6 +652,7 @@
 			    ,max: 14
 			    ,showBottom: false
 			  });
+			  
 			  laydate.render({
 				    elem: '#test-limit3'
 				    ,type: 'time'

@@ -21,24 +21,24 @@
                         <a class="sidebar-sub-toggle"><i class="ti-time"></i> 预约管理 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="${APP_PATH}/appointment/toValidAppointPage">有效预约</a></li>
-                            <li><a href="uc-calendar.html">失效预约</a></li>
-                            <li><a href="uc-calendar.html">有效预约</a></li>
+                            <li><a href="${APP_PATH}/appointment/toAddApointPage">添加预约</a></li>
+                            <%-- <li><a href="${APP_PATH}/appointment/toAfterApointPage">服务之后</a></li> --%>
                             
                         </ul>
                     </li>
                     <li>
-                        <a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i>  Charts  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                        <a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i>  菜单管理  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
-                            <li><a href="chart-flot.html">Flot</a></li>
+                            <li><a href="${APP_PATH}/newFood/toAddNewPage">添加新品</a></li>
                               
                         </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="sidebar-sub-toggle"><i class="ti-layout-grid4-alt"></i> Table <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="table-basic.html">Basic</a></li> 
                         </ul>
-                    </li>
+                    </li> 
                     <li>
                         <a class="sidebar-sub-toggle"><i class="ti-heart"></i> Icons <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
@@ -63,7 +63,7 @@
                             <li><a href="page-reset-password.html">Forgot password</a></li>
                         </ul>
                     </li>
-                    <li><a target="_blank" href="#"><i class="ti-file"></i> Documentation</a></li>
+                    <li><a target="_blank" href="#"><i class="ti-file"></i> Documentation</a></li> -->
                     <li><a href="${APP_PATH}/admin/loginOut"><i class="ti-close"></i> 退出登录</a></li>
                 </ul>
             </div>
