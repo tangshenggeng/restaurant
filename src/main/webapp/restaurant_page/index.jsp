@@ -15,7 +15,8 @@
  -->    <link rel="stylesheet" href="${APP_PATH}/restaurant_page/css/styles-merged.css">
     <link rel="stylesheet" href="${APP_PATH}/restaurant_page/css/style.min.css">
     <link rel="stylesheet" href="${APP_PATH}/static/layui/css/layui.css">
-
+    <script src="${APP_PATH}/static/vue/vue.min.js"></script>
+    <script src="${APP_PATH}/static/vue/vue-resource.min.js"></script>
     <!--[if lt IE 9]>
       <script src="js/vendor/html5shiv.min.js"></script>
       <script src="js/vendor/respond.min.js"></script>
@@ -131,91 +132,21 @@
     <section class="probootstrap-section">
       <div class="container">
         <div class="row">
-          <div class="probootstrap-cell-retro">
-
-              <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
-                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_1.jpg);"></div>
-                <div class="text text-center">
-                  <h3>Baked Potato Pizza</h3>
-                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                  <p class="price">$20.99</p>
+          <div class="probootstrap-cell-retro" id="showNewFood">
+              <div v-for="item in newFood" class="probootstrap-cell probootstrap-animate fadeIn probootstrap-animated" data-animate-effect="fadeIn">
+                <div class="image" :style="{'background-image':'url('+item.foodImg+')','width':'292.5px' }"></div>
+                <div class="text text-center" style="width: 292.5px;">
+                  <h3>{{item.foodName}}</h3>
+                  <p style="margin-bottom: 30px; width: 212.5px;line-height: 24px;font-size: 15px;">{{item.foodDescribe}}</p>
+                  <p class="price">￥ {{item.foodPrice}}</p>
                 </div>
               </div>
-              <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
-                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_2.jpg);"></div>
-                <div class="text text-center">
-                  <h3>Salted Fried Chicken</h3>
-                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                  <p class="price">$19.99</p>
-                </div>
-              </div>
-              <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
-                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_3.jpg);"></div>
-                <div class="text text-center">
-                  <h3>Imported Salmon Steak</h3>
-                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                  <p class="price">$20.99</p>
-                </div>
-              </div>
-              <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
-                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_1.jpg);"></div>
-                <div class="text text-center">
-                  <h3>Baked Potato Pizza</h3>
-                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                  <p class="price">$20.99</p>
-                </div>
-              </div>
-              <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
-                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_2.jpg);"></div>
-                <div class="text text-center">
-                  <h3>Salted Fried Chicken</h3>
-                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                  <p class="price">$19.99</p>
-                </div>
-              </div>
-              <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
-                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_3.jpg);"></div>
-                <div class="text text-center">
-                  <h3>Imported Salmon Steak</h3>
-                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                  <p class="price">$20.99</p>
-                </div>
-              </div>
-
-            <%-- <div class="half">
-
-              <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
-                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_4.jpg);"></div>
-                <div class="text text-center">
-                  <h3>Roast Beef (4 sticks)</h3>
-                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                  <p class="price">$32.99</p>
-                </div>
-              </div>
-              <div class="probootstrap-cell reverse probootstrap-animate" data-animate-effect="fadeIn">
-                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_5.jpg);"></div>
-                <div class="text text-center">
-                  <h3>Tuna Roast Source</h3>
-                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                  <p class="price">$25.99</p>
-                </div>
-              </div>
-              <div class="probootstrap-cell probootstrap-animate" data-animate-effect="fadeIn">
-                <div class="image" style="background-image: url(${APP_PATH}/restaurant_page/img/img_square_1.jpg);"></div>
-                <div class="text text-center">
-                  <h3>Fried Potatoes with Garlic</h3>
-                  <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam.</p>
-                  <p class="price">$32.99</p>
-                </div>
-              </div>
-              
-            </div> --%>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="probootstrap-section-bg overlay" style="background-image: url(${APP_PATH}/restaurant_page/img/hero_bg_4.jpg);"  data-stellar-background-ratio="0.5"  data-section="menu">
+    <section class="probootstrap-section-bg overlay" style="background-image: url(${APP_PATH}/restaurant_page/img/hero_bg_4.jpg);"  data-stellar-background-ratio="1"  data-section="menu">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center probootstrap-animate">
@@ -233,65 +164,73 @@
         <div class="row">
         
             <ul class="menus">
-              <li  class="col-md-5" style="margin: 5px 45px">
+              <li  class="col-md-5" style="margin: 20px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_1.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
+                  <span style="font-size: 20px"><s>$22.99</s></span>
                   <span class="price">$22.99</span>
                   <h3>Fried Potatoes with Garlic</h3>
                   <p>Crab / Potatoes / Rice</p>
                 </div>
               </li>
-              <li  class="col-md-5" style="margin: 5px 45px">
+              <li  class="col-md-5" style="margin: 20px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_2.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
+                <span style="font-size: 20px"><s>$22.99</s></span>
                   <span class="price">$22.99</span>
                   <h3>Tuna Roast Source</h3>
                   <p>Crab / Potatoes / Rice</p>
                 </div>
               </li>
-              <li  class="col-md-5" style="margin: 5px 45px">
+              <li  class="col-md-5" style="margin: 20px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_3.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
+                <span style="font-size: 20px"><s>$22.99</s></span>
                   <span class="price">$22.99</span>
                   <h3>Roast Beef (4 sticks)</h3>
                   <p>Crab / Potatoes / Rice</p>
                 </div>
               </li>
-              <li  class="col-md-5" style="margin: 5px 45px">
+              <li  class="col-md-5" style="margin: 20px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_4.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
+                <span style="font-size: 20px"><s>$22.99</s></span>
                   <span class="price">$22.99</span>
                   <h3>Salted Fried Chicken</h3>
                   <p>Crab / Potatoes / Rice</p>
                 </div>
               </li>
-              <li  class="col-md-5" style="margin: 5px 45px">
+              <li  class="col-md-5" style="margin: 20px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_1.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
+                <span style="font-size: 20px"><s>$22.99</s></span>
                   <span class="price">$22.99</span>
                   <h3>Fried Potatoes with Garlic</h3>
                   <p>Crab / Potatoes / Rice</p>
                 </div>
               </li>
-              <li  class="col-md-5" style="margin: 5px 45px">
+              <li  class="col-md-5" style="margin: 20px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_2.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
+                <span style="font-size: 20px"><s>$22.99</s></span>
                   <span class="price">$22.99</span>
                   <h3>Tuna Roast Source</h3>
                   <p>Crab / Potatoes / Rice</p>
                 </div>
               </li>
-              <li  class="col-md-5" style="margin: 5px 45px">
+              <li  class="col-md-5" style="margin: 20px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_3.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
+                <span style="font-size: 20px"><s>$22.99</s></span>
                   <span class="price">$22.99</span>
                   <h3>Roast Beef (4 sticks)</h3>
                   <p>Crab / Potatoes / Rice</p>
                 </div>
               </li>
-              <li  class="col-md-5" style="margin: 5px 45px">
+              <li  class="col-md-5" style="margin: 20px 45px">
                 <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_4.jpg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
+                <span style="font-size: 20px"><s>$22.99</s></span>	
                   <span class="price">$22.99</span>
                   <h3>Salted Fried Chicken</h3>
                   <p>Crab / Potatoes / Rice</p>
@@ -340,7 +279,7 @@
       </div>
     </section>
 
-    <section class="probootstrap-section-bg overlay" style="background-image: url(${APP_PATH}/restaurant_page/img/hero_bg_5.jpg);"  data-stellar-background-ratio="0.5" data-section="reservation">
+    <section class="probootstrap-section-bg overlay" style="background-image: url(${APP_PATH}/restaurant_page/img/hero_bg_5.jpg);"  data-stellar-background-ratio="1" data-section="reservation">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center probootstrap-animate">
@@ -436,7 +375,7 @@
       </div>
     </section>
 
-    <section class="probootstrap-section-bg overlay" style="background-image: url(${APP_PATH}/restaurant_page/img/hero_bg_4.jpg);"  data-stellar-background-ratio="0.5" data-section="events">
+    <section class="probootstrap-section-bg overlay" style="background-image: url(${APP_PATH}/restaurant_page/img/hero_bg_4.jpg);"  data-stellar-background-ratio="1" data-section="events">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center probootstrap-animate">
@@ -638,9 +577,6 @@
 				}
 			});
 		});
-	
-	
-	
 		layui.use('laydate', function(){
 			  var laydate = layui.laydate;
 			  //执行一个laydate实例
@@ -681,7 +617,23 @@
 				}
 			});
 		});
-	
+		var showNewFood = new Vue({
+			el:"#showNewFood",
+			data:{
+				newFood:[]
+			},
+			created: function (event) {
+				this.$http.get("${APP_PATH}/newFood/getAllShowNewFppd").then(function(response){
+					console.log(response.body)
+					//成功
+					this.newFood=response.body;
+				},function(response){
+					//错误
+					console.log("新品展示出错！")
+				});
+			}
+		});
+		
 	</script>
   </body>
 </html>

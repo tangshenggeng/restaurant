@@ -30,6 +30,7 @@
                         <a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i>  菜单管理  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                         <ul>
                             <li><a href="${APP_PATH}/newFood/toAddNewPage">添加新品</a></li>
+                            <li><a href="${APP_PATH}/newFood/toNewFoodListPage">上新管理</a></li>
                               
                         </ul>
                     </li>
