@@ -57,7 +57,7 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">导航</a></li>
-                                    <li class="active">上新管理</li>
+                                    <li class="active">推新管理</li>
                                 </ol>
                             </div>
                         </div>
@@ -85,15 +85,16 @@
 											</div>
 													<div class="layui-form-item">
 													  <div class="layui-inline">
-													    <label class="layui-form-label" style="margin-right: 30px">范围</label>
+													    <label class="layui-form-label" style="margin-right: 30px">日期</label>
 													    <div class="layui-input-inline" style="width: 100px;">
-													      <input type="text" id="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+													      <input type="text" id="start_time" autocomplete="off" class="layui-input">
 													    </div>
 													    <div class="layui-form-mid">-</div>
 													    <div class="layui-input-inline" style="width: 100px;">
-													      <input type="text" id="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+													      <input type="text" id="end_time" autocomplete="off" class="layui-input">
 													    </div>
 													  </div>
+													  
 												</div>
 												<div class="layui-form-item">
 												    <label class="layui-form-label">状态</label>
@@ -110,9 +111,12 @@
 												<div class="layui-form-item" >
 													  <label class="layui-form-label">描述</label>
 													  <div class="layui-input-block">
-													    <textarea id="kwFoodDescribe" required lay-verify="required" placeholder="请输入上新菜描述" class="layui-textarea"></textarea>
+													    <textarea placeholder="请输入内容" id="kwFoodDesc" name="foodDescribe" class="layui-textarea"></textarea>
+													    <!-- <input type="text" id="kwFoodDesc" placeholder="请输入" autocomplete="off" class="layui-input"> -->
 													  </div>
 												</div>
+												
+												
 											</div>
 											
 											<div class="layui-form-item">
@@ -130,10 +134,11 @@
                     	<div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>上新美食</h4>
-                                </div>
+                                    <h4>推新管理</h4>
+                                </div><br>
+                                <button class="layui-btn layui-btn layui-btn-danger" type="button" id="delSoonFoodsBtn"> 删除</button>
                                 <div class="card-body">
-                                    <table id="newFoodListTb" class="table table-responsive table-hover" lay-filter="newFoodListTBFilter">
+                                    <table id="soonFoodListTb" class="table table-responsive table-hover" lay-filter="foodMenusListTBFilter">
                                         
                                     </table>
                                 </div>
@@ -151,10 +156,11 @@
 </div>
 <!-- /# content wrap -->
 <!-- 模态框 -->
-<!-- 展示 -->
-<div style="display: none;" id="showFoodMenusModal">
+<!-- 改变展示状态 -->
+<div style="display: none;" id="showSoonFoodModal">
+	
 	<form>
-		<input type="hidden" class="newFoodId"/>
+		<input type="hidden" class="soonFoonId"/>
 		<div class="form-group" style="margin: 20px 100px">
 		    <label>修改展示状态</label>
 		    <select class="form-control" id="isShowModal">
@@ -166,11 +172,11 @@
 		</div>
 	</form>
 </div>
-<!-- 修改 -->
-<div style="display: none;" id="changeNewFoodInfoModal">
+<!-- 修改信息 -->
+<div style="display: none;" id="changeFoodMenusInfoModal">
 		<div class="row" style="width: 700px">
-			<form class="layui-form " style="margin-top: 5px" id="changeNewFoodForm"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-			  <input type="hidden" class="newFoodId" name="newFoodId"/>
+			<form class="layui-form " style="margin-top: 5px" id="changeSoonFoodForm"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+			  <input type="hidden" class="soonFoonId" name="soonId"/>
 			  <div class="layui-form-item">
 			    <label class="layui-form-label">菜名</label>
 			    <div class="layui-input-block">
@@ -178,17 +184,18 @@
 			    </div>
 			  </div>
 			  <div class="layui-form-item layui-form-text">
-			    <label class="layui-form-label">描述</label>
+			    <label class="layui-form-label">原料</label>
 			    <div class="layui-input-block">
-			      <textarea placeholder="请输入内容" id="oldDesc" name="foodDescribe" class="layui-textarea"></textarea>
+			    	<textarea placeholder="请输入内容" id="oldFoodDesc" name="foodDescribe" class="layui-textarea"></textarea>
 			    </div>
 			  </div>
 			  <div class="layui-form-item">
-			    <label class="layui-form-label">价格</label>
+			    <label class="layui-form-label">时间</label>
 			    <div class="layui-input-block">
-			      <input type="number" name="foodPrice" id="oldPrice" placeholder="请输入价格" autocomplete="off" class="layui-input">
+			      <input type="text" id="changeTime" name="formTime" autocomplete="off" class="layui-input">
 			    </div>
 			  </div>
+			  
 			  <input type="hidden" id="imgNewFoodPath" name="foodImg"/>
 			  <button type="reset" id="realResetBtn" hidden="hidden">重置</button>
 			</form>	
@@ -212,10 +219,29 @@
 			  </div>
 			<div class="layui-form-item">
 			    <div class="layui-input-block">
-			      <button class="layui-btn" type="button" id="change_new_food_btn">提交</button>
+			      <button class="layui-btn" type="button" id="change_soon_food_btn">提交</button>
 			      <button type="button" id="notRealReset" class="layui-btn layui-btn-primary">重置</button>
 			    </div>
 			  </div>
+	</div>
+	</div>
+<div style="display: none;" id="changeFoodBlogModal">
+		<div class="row" style="width: 700px">
+			<form class="layui-form " style="margin-top: 5px" id="changeFoodBlogForm"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+			  <input type="hidden" class="soonFoonId" name="soonId"/>
+			  <div class="layui-form-item layui-form-text">
+			    <label class="layui-form-label">博文</label>
+			    <div class="layui-input-block">
+			      <textarea placeholder="请输入内容" id="oldText" name="foodText" rows="15" class="layui-textarea"></textarea>
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" type="button" id="change_food_blog_btn">提交</button>
+			      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			    </div>
+			  </div>
+			</form>	
 	</div>
 	</div>
 </div>
@@ -242,39 +268,39 @@
 			  var form = layui.form;
 			  var layer = layui.layer;
 			  var kwFoodName = $("#kwFoodName").val();
-			  var price_min = $("#price_min").val();
-			  var price_max = $("#price_max").val();
+			  var start_time = $("#start_time").val();
+			  var end_time = $("#end_time").val();
 			  var kwIsShow = $("#kwIsShowSel").val();
-			  var kwFoodDescribe = $("#kwFoodDescribe").val();
+			  var foodDesc = $("#kwFoodDesc").val();
 			  //第一个实例
 			  table.render({
-			    elem: '#newFoodListTb'
+			    elem: '#soonFoodListTb'
 			    ,height: 600
-			    ,url: '${APP_PATH}/newFood/getNewFoodList' //数据接口
+			    ,url: '${APP_PATH}/soonFood/getSoonFoodList' //数据接口
 			    ,page: true //开启分页
 			    ,method : "POST"
 				,dataType : 'json'
+				,id:"soonFoodTbId"
 				,processData : false
 				,contentType : "application/json"//必须指定，否则会报415错误
 			    ,where: {
 			    	foodName : kwFoodName,
-			    	priceMin : price_min,
-			    	priceMax : price_max,
+			    	startTime : start_time,
+			    	endTime : end_time,
 			    	isShow : kwIsShow,
-			    	foodDescribe : kwFoodDescribe,
+			    	foodDescribe : foodDesc,
 			    }
 			    ,cols: [[ //表头
-			      {field: 'newFoodId', title: '#',hide:true,align:"center"}
+			      {field: 'soonId', title: '#',type:"checkbox",align:"center"}
 			      ,{field: 'foodName', title: '美食名',align:"center"}
 			      ,{field: 'foodImg', title: '图片',align:"center",templet: function(d){
 			          return '<img style="width: 50px;height: 50px;" alt="美食图片" src="'+d.foodImg+'">'
 			      }}
-			      ,{field: 'foodPrice', title: '价格（￥）',align:"center",style:"color:orange"}
-			      ,{field: 'foodDescribe', title: '描述',align:"center",style:"color:red"}
+			      ,{field: 'upTime', title: '上市时间',align:"center",style:"color:orange"}
+			      ,{field: 'foodDescribe', title: '描述',align:"center"}
 			      ,{field: 'isShow', title: '状态',align:"center",style:"color:#00838F",templet: function(d){
 			    	  return d.isShow==100?"展示":"隐藏";
 			      }}
-			      ,{field: 'createTime', title: '上新时间',align:"center"}
 			      ,{fixed: 'right', title: '操作', toolbar: '#barDemo',align:"center"}
 			    ]]
 			    ,text: {
@@ -283,6 +309,7 @@
 			    ,skin: 'line' //行边框风格
 			    ,size: 'lg'
 			  	,parseData: function(res){ //res 即为原始返回的数据
+			  		console.log(res.data)
 				    return {
 				      "code": res.status, //解析接口状态
 				      "msg": res.message, //解析提示文本
@@ -291,22 +318,22 @@
 				    };
 				  }
 			  });
-			  table.on('tool(newFoodListTBFilter)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+			  table.on('tool(foodMenusListTBFilter)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
 				  $("#isShowModal option").each(function(){
-			  		 $(this).attr("selected", false);  
-			  	    });
+				  	$(this).attr("selected", false);  
+				  });
 				  var data = obj.data; //获得当前行数据
 				  console.log(data)
 				  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 				  var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
 				  if(layEvent === 'show'){ //解决
-			  	  $("#isShowModal option").each(function(){
-			  		  var ele = $(this).val();
-			  		  if(ele == data.isShow){
-			  			 $(this).attr("selected", true);  
-			  		  }
-			  	    });
-				  	$(".newFoodId").val(data.newFoodId)
+				  	  $("#isShowModal option").each(function(){
+				  		  var ele = $(this).val();
+				  		  if(ele == data.isShow){
+				  			 $(this).attr("selected", true);  
+				  		  }
+				  	  });
+				  	$(".soonFoonId").val(data.soonId)
 				  	var index = layer.open({
 						title : '是否展示',
 						fix : true,
@@ -317,17 +344,17 @@
 						shadeClose : true,
 						shade : 0.4,
 						type : 1,
-						content : $('#showFoodMenusModal')
+						content : $('#showSoonFoodModal')
 					});
 				  } else if(layEvent === 'edit'){ //查看
 					  $("#oldFoodImg").attr("src",data.foodImg);
-				  	  $("#oldDesc").val(data.foodDescribe)
-				  	  $("#oldPrice").val(data.foodPrice)
+				  	  $("#oldFoodDesc").val(data.foodDescribe)
 				  	  $("#oldFoodName").val(data.foodName)
-				  	  $(".newFoodId").val(data.newFoodId)
+				  	  $("#changeTime").val(data.upTime)
+				  	  $(".soonFoonId").val(data.soonId)
 				  	  $("#imgNewFoodPath").val(data.foodImg)
 					  var index = layer.open({
-							title : '新品信息',
+							title : '推新信息',
 							fix : true,
 							resize :false,
 							move: false,
@@ -336,27 +363,24 @@
 							shadeClose : true,
 							shade : 0.4,
 							type : 1,
-							content : $('#changeNewFoodInfoModal')
+							content : $('#changeFoodMenusInfoModal')
 						});
-				  }else if(layEvent === 'del'){
-					  var id = data.newFoodId;
-					  layer.confirm('真的删除行么', function(index){
-					      obj.del(); 
-					      layer.close(index);
-					      $.ajax({
-					    	 url:"${APP_PATH}/newFood/delNewFood?id="+id,
-					    	 method:"get",
-				    		 success:function(res){
-								  if(res.code==100){
-									  layer.msg(res.extend.msg,{icon:6})
-								  }else{
-									  layer.msg(res.extend.msg,{icon:5})
-								  }
-							  },error:function(){
-								  layer.msg("删除失败，系统错误！",{icon:5})
-							  }
-					      });
-					    });
+				  }else if(layEvent === 'blog'){
+					  $(".soonFoonId").val(data.soonId)
+					  $("#oldText").val(data.foodText)
+					  var index = layer.open({
+							title : '美食博文',
+							fix : true,
+							resize :false,
+							move: false,
+							area:["750px","450px"],
+							zIndex : 500,
+							shadeClose : true,
+							shade : 0.4,
+							type : 1,
+							content : $('#changeFoodBlogModal')
+						});
+					  
 				  }else if(layEvent === 'LAYTABLE_TIPS'){
 				  
 				    layer.alert('Hi，头部工具栏扩展的右侧图标。');
@@ -374,7 +398,7 @@
 		 ,form = layui.form;
 		 var uploadInst = upload.render({
 		    elem: '#uploadFoodImg'
-		    ,url: '${APP_PATH}/newFood/uploadNewFoodImg'
+		    ,url: '${APP_PATH}/soonFood/uploadNewFoodImg'
 		    ,accept:"images"	//指定允许上传时校验的文件类型
 		    ,exts:'jpg|png|gif|bmp|jpeg'
 		    ,acceptMime:'image/*' //规定打开文件选择框时，筛选出的文件类型
@@ -411,15 +435,35 @@
 	$("#notRealReset").click(function(){
 		$("#realResetBtn").click();
 	});
-
-	$("#change_new_food_btn").click(function(){
+	$("#changeIsShowBtn").click(function(){
+		var id = $(".soonFoonId").val()
+		var isShow = $("#isShowModal").val()
+	    $.ajax({
+		  url:"${APP_PATH}/soonFood/changeSoonFoodShow?id="+id+"&isShow="+isShow,
+		  method:"get",
+		  success:function(res){
+			  if(res.code==100){
+				  layer.msg(res.extend.msg,{icon:6},function(){
+					  renderTb();
+					  layer.closeAll();
+				  })
+			  }else{
+				  layer.msg(res.extend.msg,{icon:5})
+			  }
+		  },error:function(){
+			  layer.msg("展示失败，系统错误！",{icon:5})
+		  }
+	   });
+	});
+	//修改信息
+	$("#change_soon_food_btn").click(function(){
 		$("#previewImg").attr("src","")
-		var data = $("#changeNewFoodForm").serialize(); 
+		var data = $("#changeSoonFoodForm").serialize(); 
 		layui.use(['layer','form'], function(){
 			 layer = layui.layer
 			 ,form = layui.form;
 			$.ajax({
-				url:"${APP_PATH}/newFood/changeNewFoodInfo",
+				url:"${APP_PATH}/soonFood/changeSoonFoodInfo",
 				method:"POST",
 				data:data,
 				success:function(res){
@@ -438,33 +482,111 @@
 			});
 		});
 	});
-
-	$("#changeIsShowBtn").click(function(){
-		var id = $(".newFoodId").val()
-		var isShow = $("#isShowModal").val()
-	    $.ajax({
-		  url:"${APP_PATH}/newFood/changeNewFoodShow?id="+id+"&isShow="+isShow,
-		  method:"get",
-		  success:function(res){
-			  if(res.code==100){
-				  layer.msg(res.extend.msg,{icon:6},function(){
-					  renderTb();
-					  layer.closeAll();
-				  })
-			  }else{
-				  layer.msg(res.extend.msg,{icon:5})
-			  }
-		  },error:function(){
-			  layer.msg("展示失败，系统错误！",{icon:5})
-		  }
-	   });
+	$("#change_food_blog_btn").click(function(){
+		$("#previewImg").attr("src","")
+		var data = $("#changeFoodBlogForm").serialize(); 
+		layui.use(['layer','form'], function(){
+			 layer = layui.layer
+			 ,form = layui.form;
+			$.ajax({
+				url:"${APP_PATH}/soonFood/changeFoodBlogInfo",
+				method:"POST",
+				data:data,
+				success:function(res){
+					console.log(res);
+					if(res.code==100){
+						layer.msg(res.extend.msg,{icon:6},function(){
+							renderTb();
+							layer.closeAll();
+						})
+					}else{
+						layer.msg(res.extend.msg,{icon:5});
+					}
+				},error:function(){
+					layer.msg("系统错误！",{icon:5});
+				}
+			});
+		});
 	});
-	  
+	layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+		  //执行一个laydate实例
+		  laydate.render({
+		    elem: '#start_time'
+		    ,eventElem: '#start_time'
+		    ,trigger: 'click'
+		    ,min: 0
+		    ,showBottom: false
+		  });
+	});	
+	layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+		  //执行一个laydate实例
+		  laydate.render({
+		    elem: '#end_time'
+		    ,eventElem: '#end_time'
+		    ,trigger: 'click'
+		    ,min: 0
+		    ,showBottom: false
+		  });
+	});	
+	layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+		  //执行一个laydate实例
+		  laydate.render({
+		    elem: '#changeTime'
+		    ,eventElem: '#changeTime'
+		    ,trigger: 'click'
+		    ,min: 0
+		    ,showBottom: false
+		  });
+	});	
+	//删除
+	$("#delSoonFoodsBtn").click(function(){
+		var table = layui.table;
+		var layer = layui.layer;
+		var checkStatus = table.checkStatus('soonFoodTbId');
+		var ids=new Array()
+		$(checkStatus.data).each(function(){
+			ids.push($(this)[0].soonId)
+		});
+		layui.use(['table','layer'], function(){
+			layer.confirm('真的删除行么', function(index){
+
+				
+				
+				$.ajax({
+					url:"${APP_PATH}/soonFood/delSoonFoodByIds",
+					method:"post",
+					data:ids,
+					method : "POST"
+					,dataType : 'json'
+					,processData : false
+					,contentType : "application/json",//必须指定，否则会报415错误
+					success:function(res){
+						console.log(res)
+						if(res.code==100){
+							layer.msg(res.extend.msg,{icon:6},function(){
+								renderTb();
+								layer.closeAll();
+							})
+						}else{
+							layer.msg(res.extend.msg,{icon:5});
+						}
+					},error:function(){
+						layer.msg("删除失败，系统错误！",{icon:5})
+					}
+				});  
+			});
+			
+		})
+	});
+	
 </script>
 <script type="text/html" id="barDemo">
 <button type="button" class="btn btn-warning btn-xs btn-outline" lay-event="edit">修改</button>
 <button type="button" class="btn btn-danger btn-xs btn-outline" lay-event="show">状态</button>
-<button type="button" class="btn btn-danger btn-xs btn-outline" lay-event="del">删除</button>
+<button type="button" class="btn btn-danger btn-xs btn-outline" lay-event="blog">博文</button>
 </script>
 </body>
 

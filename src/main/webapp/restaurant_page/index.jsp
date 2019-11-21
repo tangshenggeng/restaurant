@@ -163,118 +163,20 @@
       <div class="container">
         <div class="row">
         
-            <ul class="menus">
-              <li  class="col-md-5" style="margin: 20px 45px">
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_1.jpg" alt="Free Bootstrap Template "></figure>
+            <ul class="menus" id="showFoodMenus">
+            
+              <li v-for="item in foodMenus"  class="col-md-5" style="margin: 20px 45px">
+                <figure class="image"><img :src="item.foodImg" alt="Free Bootstrap Template "></figure>
                 <div class="text">
-                  <span style="font-size: 20px"><s>$22.99</s></span>
-                  <span class="price">$22.99</span>
-                  <h3>Fried Potatoes with Garlic</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-              <li  class="col-md-5" style="margin: 20px 45px">
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_2.jpg" alt="Free Bootstrap Template "></figure>
-                <div class="text">
-                <span style="font-size: 20px"><s>$22.99</s></span>
-                  <span class="price">$22.99</span>
-                  <h3>Tuna Roast Source</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-              <li  class="col-md-5" style="margin: 20px 45px">
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_3.jpg" alt="Free Bootstrap Template "></figure>
-                <div class="text">
-                <span style="font-size: 20px"><s>$22.99</s></span>
-                  <span class="price">$22.99</span>
-                  <h3>Roast Beef (4 sticks)</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-              <li  class="col-md-5" style="margin: 20px 45px">
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_4.jpg" alt="Free Bootstrap Template "></figure>
-                <div class="text">
-                <span style="font-size: 20px"><s>$22.99</s></span>
-                  <span class="price">$22.99</span>
-                  <h3>Salted Fried Chicken</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-              <li  class="col-md-5" style="margin: 20px 45px">
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_1.jpg" alt="Free Bootstrap Template "></figure>
-                <div class="text">
-                <span style="font-size: 20px"><s>$22.99</s></span>
-                  <span class="price">$22.99</span>
-                  <h3>Fried Potatoes with Garlic</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-              <li  class="col-md-5" style="margin: 20px 45px">
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_2.jpg" alt="Free Bootstrap Template "></figure>
-                <div class="text">
-                <span style="font-size: 20px"><s>$22.99</s></span>
-                  <span class="price">$22.99</span>
-                  <h3>Tuna Roast Source</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-              <li  class="col-md-5" style="margin: 20px 45px">
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_3.jpg" alt="Free Bootstrap Template "></figure>
-                <div class="text">
-                <span style="font-size: 20px"><s>$22.99</s></span>
-                  <span class="price">$22.99</span>
-                  <h3>Roast Beef (4 sticks)</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-              <li  class="col-md-5" style="margin: 20px 45px">
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_4.jpg" alt="Free Bootstrap Template "></figure>
-                <div class="text">
-                <span style="font-size: 20px"><s>$22.99</s></span>	
-                  <span class="price">$22.99</span>
-                  <h3>Salted Fried Chicken</h3>
-                  <p>Crab / Potatoes / Rice</p>
+                  <span style="font-size: 20px"><s>￥ {{item.oldPrice}}</s></span>
+                  <span class="price">￥ {{item.newPrice}}</span>
+                  <h3>{{item.foodName}}</h3>
+                  <p>{{item.foodMaterial}}</p>
                 </div>
               </li>
             </ul>
-          
-          <%-- <div class="col-md-6">
-            <ul class="menus">
-              <li>
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_5.jpg" alt="Free Bootstrap Template "></figure>
-                <div class="text">
-                  <span class="price">$22.99</span>
-                  <h3>Baked Potato Pizza</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-              <li>
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_1.jpg" alt="Free Bootstrap Template "></figure>
-                <div class="text">
-                  <span class="price">$22.99</span>
-                  <h3>Fried Potatoes with Garlic</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-              <li>
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_2.jpg" alt="Free Bootstrap Template "></figure>
-                <div class="text">
-                  <span class="price">$22.99</span>
-                  <h3>Salted Fried Chicken</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-              <li>
-                <figure class="image"><img src="${APP_PATH}/restaurant_page/img/img_square_3.jpg" alt="Free Bootstrap Template "></figure>
-                <div class="text">
-                  <span class="price">$22.99</span>
-                  <h3>Tuna Roast Source</h3>
-                  <p>Crab / Potatoes / Rice</p>
-                </div>
-              </li>
-            </ul>
-          </div> --%>
-          
+            
+            
         </div>
       </div>
     </section>
@@ -389,74 +291,21 @@
     </section>
     <section class="probootstrap-section">
       <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
+        <div class="row" id="showSoonFoods">
+        
+          <div class="col-md-4 col-sm-4 probootstrap-animate fadeInUp probootstrap-animated" v-for="item in soonFoods" >
             <div class="probootstrap-block-image">
-              <figure><img src="${APP_PATH}/restaurant_page/img/img_square_2.jpg" alt="Free Bootstrap Template "></figure>
+              <figure><img :src="item.foodImg" alt="Free Bootstrap Template "></figure>
               <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
+                <span class="date">{{item.formTime}}</span>
+                <h3><a href="#">{{item.foodName}}</a></h3>
+                <p>{{item.foodDescribe}}</p>
+                <p class=""><a :href="'${APP_PATH}/soonFood/reading/'+item.soonId" class="probootstrap-custom-link link-sm">阅读更多</a></p>
               </div>
             </div>
           </div>
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
-            <div class="probootstrap-block-image">
-              <figure><img src="${APP_PATH}/restaurant_page/img/img_square_3.jpg" alt="Free Bootstrap Template "></figure>
-              <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
-            <div class="probootstrap-block-image">
-              <figure><img src="${APP_PATH}/restaurant_page/img/img_square_4.jpg" alt="Free Bootstrap Template "></figure>
-              <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
-            <div class="probootstrap-block-image">
-              <figure><img src="${APP_PATH}/restaurant_page/img/img_square_2.jpg" alt="Free Bootstrap Template "></figure>
-              <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
-            <div class="probootstrap-block-image">
-              <figure><img src="${APP_PATH}/restaurant_page/img/img_square_3.jpg" alt="Free Bootstrap Template "></figure>
-              <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-4 probootstrap-animate">
-            <div class="probootstrap-block-image">
-              <figure><img src="${APP_PATH}/restaurant_page/img/img_square_4.jpg" alt="Free Bootstrap Template "></figure>
-              <div class="text">
-                <span class="date">June 29, 2017</span>
-                <h3><a href="#">Laboriosam Quod Dignissimos</a></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                <p class=""><a href="#" class="probootstrap-custom-link link-sm">Read More</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
+
+			</div>
       </div>
     </section>
 
@@ -623,10 +472,40 @@
 				newFood:[]
 			},
 			created: function (event) {
-				this.$http.get("${APP_PATH}/newFood/getAllShowNewFppd").then(function(response){
-					console.log(response.body)
+				this.$http.get("${APP_PATH}/newFood/getAllShowNewFood").then(function(response){
 					//成功
 					this.newFood=response.body;
+				},function(response){
+					//错误
+					console.log("新品展示出错！")
+				});
+			}
+		});
+		var showFoodMenus = new Vue({
+			el:"#showFoodMenus",
+			data:{
+				foodMenus:[]
+			},
+			created: function (event) {
+				this.$http.get("${APP_PATH}/foodMenus/getAllFoodMenus").then(function(response){
+					//成功
+					this.foodMenus=response.body;
+				},function(response){
+					//错误
+					console.log("新品展示出错！")
+				});
+			}
+		});
+		var showSoonFoods = new Vue({
+			el:"#showSoonFoods",
+			data:{
+				soonFoods:[]
+			},
+			created: function (event) {
+				this.$http.get("${APP_PATH}/soonFood/getAllSoonFoods").then(function(response){
+					//成功
+					console.log(response.body)
+					this.soonFoods=response.body;
 				},function(response){
 					//错误
 					console.log("新品展示出错！")

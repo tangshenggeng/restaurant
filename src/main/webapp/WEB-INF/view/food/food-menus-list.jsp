@@ -57,7 +57,7 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">导航</a></li>
-                                    <li class="active">上新管理</li>
+                                    <li class="active">菜单管理</li>
                                 </ol>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
 											</div>
 													<div class="layui-form-item">
 													  <div class="layui-inline">
-													    <label class="layui-form-label" style="margin-right: 30px">范围</label>
+													    <label class="layui-form-label" style="margin-right: 30px">现价</label>
 													    <div class="layui-input-inline" style="width: 100px;">
 													      <input type="text" id="price_min" placeholder="￥" autocomplete="off" class="layui-input">
 													    </div>
@@ -93,6 +93,15 @@
 													    <div class="layui-input-inline" style="width: 100px;">
 													      <input type="text" id="price_max" placeholder="￥" autocomplete="off" class="layui-input">
 													    </div>
+													  </div>
+												</div>
+												
+											</div>
+											<div class="row col-lg-6">
+												<div class="layui-form-item" >
+													  <label class="layui-form-label">原料</label>
+													  <div class="layui-input-block">
+													    <input type="text" id="kwMaterial" placeholder="请输入" autocomplete="off" class="layui-input">
 													  </div>
 												</div>
 												<div class="layui-form-item">
@@ -105,14 +114,7 @@
 													    </select>
 												    </div>
 												</div>
-											</div>
-											<div class="row col-lg-6">
-												<div class="layui-form-item" >
-													  <label class="layui-form-label">描述</label>
-													  <div class="layui-input-block">
-													    <textarea id="kwFoodDescribe" required lay-verify="required" placeholder="请输入上新菜描述" class="layui-textarea"></textarea>
-													  </div>
-												</div>
+												
 											</div>
 											
 											<div class="layui-form-item">
@@ -130,10 +132,10 @@
                     	<div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>上新美食</h4>
+                                    <h4>菜单管理</h4>
                                 </div>
                                 <div class="card-body">
-                                    <table id="newFoodListTb" class="table table-responsive table-hover" lay-filter="newFoodListTBFilter">
+                                    <table id="foodMenusListTb" class="table table-responsive table-hover" lay-filter="foodMenusListTBFilter">
                                         
                                     </table>
                                 </div>
@@ -151,10 +153,11 @@
 </div>
 <!-- /# content wrap -->
 <!-- 模态框 -->
-<!-- 展示 -->
+<!-- 改变展示状态 -->
 <div style="display: none;" id="showFoodMenusModal">
+	
 	<form>
-		<input type="hidden" class="newFoodId"/>
+		<input type="hidden" class="foodMenusId"/>
 		<div class="form-group" style="margin: 20px 100px">
 		    <label>修改展示状态</label>
 		    <select class="form-control" id="isShowModal">
@@ -166,11 +169,11 @@
 		</div>
 	</form>
 </div>
-<!-- 修改 -->
-<div style="display: none;" id="changeNewFoodInfoModal">
+<!-- 修改信息 -->
+<div style="display: none;" id="changeFoodMenusInfoModal">
 		<div class="row" style="width: 700px">
-			<form class="layui-form " style="margin-top: 5px" id="changeNewFoodForm"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-			  <input type="hidden" class="newFoodId" name="newFoodId"/>
+			<form class="layui-form " style="margin-top: 5px" id="changeFoodMenusForm"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+			  <input type="hidden" class="foodMenusId" name="menuId"/>
 			  <div class="layui-form-item">
 			    <label class="layui-form-label">菜名</label>
 			    <div class="layui-input-block">
@@ -178,15 +181,21 @@
 			    </div>
 			  </div>
 			  <div class="layui-form-item layui-form-text">
-			    <label class="layui-form-label">描述</label>
+			    <label class="layui-form-label">原料</label>
 			    <div class="layui-input-block">
-			      <textarea placeholder="请输入内容" id="oldDesc" name="foodDescribe" class="layui-textarea"></textarea>
+			    	<input type="text" name="foodMaterial" id="oldMater" placeholder="请输入原料（用 - 隔开）" autocomplete="off" class="layui-input">
 			    </div>
 			  </div>
 			  <div class="layui-form-item">
-			    <label class="layui-form-label">价格</label>
+			    <label class="layui-form-label">原价</label>
 			    <div class="layui-input-block">
-			      <input type="number" name="foodPrice" id="oldPrice" placeholder="请输入价格" autocomplete="off" class="layui-input">
+			      <input type="number" name="oldPrice" id="beforeOldPrice" placeholder="请输入价格" autocomplete="off" class="layui-input">
+			    </div>
+			  </div>
+			  <div class="layui-form-item">
+			    <label class="layui-form-label">现价</label>
+			    <div class="layui-input-block">
+			      <input type="number" name="newPrice" id="beforeNewPrice" placeholder="请输入价格" autocomplete="off" class="layui-input">
 			    </div>
 			  </div>
 			  <input type="hidden" id="imgNewFoodPath" name="foodImg"/>
@@ -212,7 +221,7 @@
 			  </div>
 			<div class="layui-form-item">
 			    <div class="layui-input-block">
-			      <button class="layui-btn" type="button" id="change_new_food_btn">提交</button>
+			      <button class="layui-btn" type="button" id="change_food_menus_btn">提交</button>
 			      <button type="button" id="notRealReset" class="layui-btn layui-btn-primary">重置</button>
 			    </div>
 			  </div>
@@ -245,12 +254,12 @@
 			  var price_min = $("#price_min").val();
 			  var price_max = $("#price_max").val();
 			  var kwIsShow = $("#kwIsShowSel").val();
-			  var kwFoodDescribe = $("#kwFoodDescribe").val();
+			  var kwFoodMaterial = $("#kwMaterial").val();
 			  //第一个实例
 			  table.render({
-			    elem: '#newFoodListTb'
+			    elem: '#foodMenusListTb'
 			    ,height: 600
-			    ,url: '${APP_PATH}/newFood/getNewFoodList' //数据接口
+			    ,url: '${APP_PATH}/foodMenus/getFoodMenusList' //数据接口
 			    ,page: true //开启分页
 			    ,method : "POST"
 				,dataType : 'json'
@@ -261,7 +270,7 @@
 			    	priceMin : price_min,
 			    	priceMax : price_max,
 			    	isShow : kwIsShow,
-			    	foodDescribe : kwFoodDescribe,
+			    	foodMaterial : kwFoodMaterial,
 			    }
 			    ,cols: [[ //表头
 			      {field: 'newFoodId', title: '#',hide:true,align:"center"}
@@ -269,12 +278,12 @@
 			      ,{field: 'foodImg', title: '图片',align:"center",templet: function(d){
 			          return '<img style="width: 50px;height: 50px;" alt="美食图片" src="'+d.foodImg+'">'
 			      }}
-			      ,{field: 'foodPrice', title: '价格（￥）',align:"center",style:"color:orange"}
-			      ,{field: 'foodDescribe', title: '描述',align:"center",style:"color:red"}
+			      ,{field: 'oldPrice', title: '原价（￥）',align:"center",style:"color:orange"}
+			      ,{field: 'newPrice', title: '现价（￥）',align:"center",style:"color:red"}
+			      ,{field: 'foodMaterial', title: '描述',align:"center"}
 			      ,{field: 'isShow', title: '状态',align:"center",style:"color:#00838F",templet: function(d){
 			    	  return d.isShow==100?"展示":"隐藏";
 			      }}
-			      ,{field: 'createTime', title: '上新时间',align:"center"}
 			      ,{fixed: 'right', title: '操作', toolbar: '#barDemo',align:"center"}
 			    ]]
 			    ,text: {
@@ -283,6 +292,7 @@
 			    ,skin: 'line' //行边框风格
 			    ,size: 'lg'
 			  	,parseData: function(res){ //res 即为原始返回的数据
+			  		console.log(res.data)
 				    return {
 				      "code": res.status, //解析接口状态
 				      "msg": res.message, //解析提示文本
@@ -291,22 +301,22 @@
 				    };
 				  }
 			  });
-			  table.on('tool(newFoodListTBFilter)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+			  table.on('tool(foodMenusListTBFilter)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
 				  $("#isShowModal option").each(function(){
-			  		 $(this).attr("selected", false);  
-			  	    });
+				  	$(this).attr("selected", false);  
+				  });
 				  var data = obj.data; //获得当前行数据
 				  console.log(data)
 				  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 				  var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
 				  if(layEvent === 'show'){ //解决
-			  	  $("#isShowModal option").each(function(){
-			  		  var ele = $(this).val();
-			  		  if(ele == data.isShow){
-			  			 $(this).attr("selected", true);  
-			  		  }
-			  	    });
-				  	$(".newFoodId").val(data.newFoodId)
+				  	  $("#isShowModal option").each(function(){
+				  		  var ele = $(this).val();
+				  		  if(ele == data.isShow){
+				  			 $(this).attr("selected", true);  
+				  		  }
+				  	  });
+				  	$(".foodMenusId").val(data.menuId)
 				  	var index = layer.open({
 						title : '是否展示',
 						fix : true,
@@ -321,10 +331,11 @@
 					});
 				  } else if(layEvent === 'edit'){ //查看
 					  $("#oldFoodImg").attr("src",data.foodImg);
-				  	  $("#oldDesc").val(data.foodDescribe)
-				  	  $("#oldPrice").val(data.foodPrice)
+				  	  $("#oldMater").val(data.foodMaterial)
+				  	  $("#beforeOldPrice").val(data.oldPrice)
+				  	  $("#beforeNewPrice").val(data.newPrice)
 				  	  $("#oldFoodName").val(data.foodName)
-				  	  $(".newFoodId").val(data.newFoodId)
+				  	  $(".foodMenusId").val(data.menuId)
 				  	  $("#imgNewFoodPath").val(data.foodImg)
 					  var index = layer.open({
 							title : '新品信息',
@@ -336,15 +347,15 @@
 							shadeClose : true,
 							shade : 0.4,
 							type : 1,
-							content : $('#changeNewFoodInfoModal')
+							content : $('#changeFoodMenusInfoModal')
 						});
 				  }else if(layEvent === 'del'){
-					  var id = data.newFoodId;
+					  var id = data.menuId;
 					  layer.confirm('真的删除行么', function(index){
 					      obj.del(); 
 					      layer.close(index);
 					      $.ajax({
-					    	 url:"${APP_PATH}/newFood/delNewFood?id="+id,
+					    	 url:"${APP_PATH}/foodMenus/delFoodMenus?id="+id,
 					    	 method:"get",
 				    		 success:function(res){
 								  if(res.code==100){
@@ -374,7 +385,7 @@
 		 ,form = layui.form;
 		 var uploadInst = upload.render({
 		    elem: '#uploadFoodImg'
-		    ,url: '${APP_PATH}/newFood/uploadNewFoodImg'
+		    ,url: '${APP_PATH}/foodMenus/uploadNewFoodImg'
 		    ,accept:"images"	//指定允许上传时校验的文件类型
 		    ,exts:'jpg|png|gif|bmp|jpeg'
 		    ,acceptMime:'image/*' //规定打开文件选择框时，筛选出的文件类型
@@ -411,15 +422,35 @@
 	$("#notRealReset").click(function(){
 		$("#realResetBtn").click();
 	});
-
-	$("#change_new_food_btn").click(function(){
+	$("#changeIsShowBtn").click(function(){
+		var id = $(".foodMenusId").val()
+		var isShow = $("#isShowModal").val()
+	    $.ajax({
+		  url:"${APP_PATH}/foodMenus/changeFoodMenusShow?id="+id+"&isShow="+isShow,
+		  method:"get",
+		  success:function(res){
+			  if(res.code==100){
+				  layer.msg(res.extend.msg,{icon:6},function(){
+					  renderTb();
+					  layer.closeAll();
+				  })
+			  }else{
+				  layer.msg(res.extend.msg,{icon:5})
+			  }
+		  },error:function(){
+			  layer.msg("展示失败，系统错误！",{icon:5})
+		  }
+	   });
+	});
+	//修改信息
+	$("#change_food_menus_btn").click(function(){
 		$("#previewImg").attr("src","")
-		var data = $("#changeNewFoodForm").serialize(); 
+		var data = $("#changeFoodMenusForm").serialize(); 
 		layui.use(['layer','form'], function(){
 			 layer = layui.layer
 			 ,form = layui.form;
 			$.ajax({
-				url:"${APP_PATH}/newFood/changeNewFoodInfo",
+				url:"${APP_PATH}/foodMenus/changeFoodMenusInfo",
 				method:"POST",
 				data:data,
 				success:function(res){
@@ -439,27 +470,8 @@
 		});
 	});
 
-	$("#changeIsShowBtn").click(function(){
-		var id = $(".newFoodId").val()
-		var isShow = $("#isShowModal").val()
-	    $.ajax({
-		  url:"${APP_PATH}/newFood/changeNewFoodShow?id="+id+"&isShow="+isShow,
-		  method:"get",
-		  success:function(res){
-			  if(res.code==100){
-				  layer.msg(res.extend.msg,{icon:6},function(){
-					  renderTb();
-					  layer.closeAll();
-				  })
-			  }else{
-				  layer.msg(res.extend.msg,{icon:5})
-			  }
-		  },error:function(){
-			  layer.msg("展示失败，系统错误！",{icon:5})
-		  }
-	   });
-	});
-	  
+	
+	
 </script>
 <script type="text/html" id="barDemo">
 <button type="button" class="btn btn-warning btn-xs btn-outline" lay-event="edit">修改</button>

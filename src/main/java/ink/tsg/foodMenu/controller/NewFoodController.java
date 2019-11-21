@@ -45,7 +45,7 @@ public class NewFoodController {
 	 * 新品展示
 	 * @return 
 	 * */
-	@RequestMapping(value="/getAllShowNewFppd",method=RequestMethod.GET)
+	@RequestMapping(value="/getAllShowNewFood",method=RequestMethod.GET)
 	@ResponseBody
 	public List<NewFood> getAllShowNewFppd() {
 		EntityWrapper<NewFood> wrapper = new EntityWrapper<>();
@@ -85,21 +85,22 @@ public class NewFoodController {
 	 * */
 	@RequestMapping(value="/changeNewFoodShow",method=RequestMethod.GET)
 	@ResponseBody
-	public Msg changeNewFoodShow(@RequestParam("id")Integer id) {
-		EntityWrapper<NewFood> wrapper = new EntityWrapper<>();
-		wrapper.eq("is_show", 100);
-		int count = newFoodService.selectCount(wrapper);
-		if(count > 5) {
-			return Msg.fail().add("msg","为了用户体验，最多只能展示6个新品！");
-		}
-		NewFood newFood = new NewFood();
-		newFood.setNewFoodId(id);
-		newFood.setIsShow(100);
-		boolean b = newFoodService.updateById(newFood);
-		if(b) {
-			return Msg.success().add("msg", "展示成功！");
-		}
-		return Msg.fail().add("msg","展示失败！");
+	public Msg changeNewFoodShow(@RequestParam("id")Integer id,
+			@RequestParam("isShow")Integer isShow) {
+			EntityWrapper<NewFood> wrapper = new EntityWrapper<>();
+			wrapper.eq("is_show", 100);
+			int count = newFoodService.selectCount(wrapper);
+			if(count > 5) {
+				return Msg.fail().add("msg","为了用户体验，最多只能展示6个新品！");
+			}
+			NewFood newFood = new NewFood();
+			newFood.setNewFoodId(id);
+			newFood.setIsShow(isShow);
+			boolean b = newFoodService.updateById(newFood);
+			if(b) {
+				return Msg.success().add("msg", "修改成功！");
+			}
+			return Msg.fail().add("msg","修改失败！");
 	}
 	
 	/**
